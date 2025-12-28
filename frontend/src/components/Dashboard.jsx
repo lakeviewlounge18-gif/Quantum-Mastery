@@ -19,17 +19,26 @@ import {
   Search,
   Plus,
   Star,
-  Crown
+  Crown,
+  GraduationCap,
+  Play,
+  Lock,
+  CheckCircle,
+  Sprout,
+  ChevronRight,
+  Clock
 } from 'lucide-react';
-import { Card, CardHeader, CardContent } from './ui/card';
 import { Button } from './ui/button';
-import { fullDashboardData, calendarJournalData } from '../data/mock';
+import { Progress } from './ui/progress';
+import { fullDashboardData, calendarJournalData, courseData } from '../data/mock';
 
 const Dashboard = ({ onClose }) => {
   const [activeView, setActiveView] = useState('dashboard');
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   const sidebarItems = [
     { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
+    { id: 'courses', icon: GraduationCap, label: 'Courses' },
     { id: 'calendar', icon: Calendar, label: 'Calendar' },
     { id: 'journal', icon: BookOpen, label: 'Journal' },
     { id: 'accounts', icon: Wallet, label: 'Accounts' },
@@ -38,6 +47,12 @@ const Dashboard = ({ onClose }) => {
     { id: 'community', icon: Users, label: 'Community' },
     { id: 'affiliate', icon: Gift, label: 'Affiliates' },
   ];
+
+  const courseIcons = {
+    Sprout: Sprout,
+    TrendingUp: TrendingUp,
+    Crown: Crown,
+  };
 
   const renderMetricsGrid = () => (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -68,6 +83,266 @@ const Dashboard = ({ onClose }) => {
     </div>
   );
 
+  const renderCoursesView = () => {
+    if (selectedCourse) {
+      return renderCourseDetail();
+    }
+    
+    return (
+      <div className="space-y-6">
+        {/* Course Progress Overview */}
+        <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+          <h3 className="text-white font-bold text-xl mb-4">Course Progress</h3>
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-[#70DB3E]">60%</p>
+              <p className="text-gray-500 text-sm">Beginner</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-gray-500">0%</p>
+              <p className="text-gray-500 text-sm">Intermediate</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-gray-500">0%</p>
+              <p className="text-gray-500 text-sm">Advanced</p>
+            </div>
+          </div>
+          <div className="h-3 bg-[#222222] rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-[#70DB3E] via-[#70DB3E] to-transparent" style={{ width: '20%' }} />
+          </div>
+          <p className="text-gray-400 text-sm mt-2">Overall Progress: 20% (6 of 30 lessons completed)</p>
+        </div>
+
+        {/* Course Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {courseData.levels.map((level) => {
+            const IconComponent = courseIcons[level.icon] || GraduationCap;
+            return (
+              <div
+                key={level.id}
+                onClick={() => !level.locked && setSelectedCourse(level)}
+                className={`relative bg-[#1a1a1a] rounded-2xl p-6 border transition-all duration-500 cursor-pointer ${
+                  level.locked 
+                    ? 'border-[#222222] opacity-60' 
+                    : 'border-[#222222] hover:border-[#70DB3E]/50 hover:shadow-[0_0_40px_rgba(112,219,62,0.15)] hover:-translate-y-2'
+                }`}
+              >
+                {/* Lock Overlay */}
+                {level.locked && (
+                  <div className="absolute inset-0 bg-black/50 rounded-2xl flex items-center justify-center z-10">
+                    <div className="text-center">
+                      <Lock className="w-8 h-8 text-gray-500 mx-auto mb-2" />
+                      <p className="text-gray-400 text-sm">Complete previous level</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Card Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div 
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: `${level.color}20` }}
+                  >
+                    <IconComponent className="w-6 h-6" style={{ color: level.color }} />
+                  </div>
+                  {level.quizPassed && (
+                    <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#70DB3E]/20 text-[#70DB3E] text-xs">
+                      <CheckCircle className="w-3 h-3" /> Completed
+                    </div>
+                  )}
+                </div>
+
+                {/* Card Content */}
+                <h4 className="text-white font-bold text-lg mb-1">{level.name}</h4>
+                <p className="text-gray-500 text-sm mb-4">{level.description}</p>
+
+                {/* Progress */}
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-400">{level.completedLessons}/{level.totalLessons} lessons</span>
+                    <span style={{ color: level.color }}>{level.progress}%</span>
+                  </div>
+                  <div className="h-2 bg-[#222222] rounded-full overflow-hidden">
+                    <div 
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${level.progress}%`, backgroundColor: level.color }}
+                    />
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <Button
+                  disabled={level.locked}
+                  className={`w-full font-semibold py-3 rounded-xl transition-all duration-300 ${
+                    level.locked 
+                      ? 'bg-[#222222] text-gray-500 cursor-not-allowed'
+                      : 'bg-[#70DB3E] text-black hover:bg-[#5BC236]'
+                  }`}
+                >
+                  {level.locked ? 'Locked' : level.progress > 0 ? 'Continue Learning' : 'Start Course'}
+                  <ChevronRight className="ml-1 w-4 h-4 inline" />
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Quiz Info */}
+        <div className="bg-[#70DB3E]/10 rounded-2xl p-6 border border-[#70DB3E]/30">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#70DB3E]/20 flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-[#70DB3E]" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-1">Complete Each Level to Progress</h4>
+              <p className="text-gray-400 text-sm">
+                Each course level ends with a short quiz. You must pass the quiz to unlock the next level. 
+                You cannot skip levels - this ensures you build a solid foundation before advancing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderCourseDetail = () => {
+    const course = selectedCourse;
+    const IconComponent = courseIcons[course.icon] || GraduationCap;
+    
+    return (
+      <div className="space-y-6">
+        {/* Back Button */}
+        <Button
+          onClick={() => setSelectedCourse(null)}
+          variant="ghost"
+          className="text-gray-400 hover:text-white mb-4"
+        >
+          ← Back to Courses
+        </Button>
+
+        {/* Course Header */}
+        <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+          <div className="flex items-center gap-4 mb-4">
+            <div 
+              className="w-14 h-14 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: `${course.color}20` }}
+            >
+              <IconComponent className="w-7 h-7" style={{ color: course.color }} />
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-2xl">{course.name} Course</h3>
+              <p className="text-gray-400">{course.description}</p>
+            </div>
+          </div>
+          
+          {/* Progress Bar */}
+          <div className="mb-4">
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-gray-400">{course.completedLessons} of {course.totalLessons} lessons completed</span>
+              <span style={{ color: course.color }}>{course.progress}%</span>
+            </div>
+            <div className="h-3 bg-[#222222] rounded-full overflow-hidden">
+              <div 
+                className="h-full rounded-full transition-all duration-500"
+                style={{ width: `${course.progress}%`, backgroundColor: course.color }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Lessons List */}
+        <div className="space-y-3">
+          {course.lessons.map((lesson, index) => (
+            <div
+              key={lesson.id}
+              className={`bg-[#1a1a1a] rounded-xl p-4 border transition-all duration-300 cursor-pointer ${
+                lesson.completed 
+                  ? 'border-[#70DB3E]/30 hover:border-[#70DB3E]/50' 
+                  : 'border-[#222222] hover:border-[#70DB3E]/30'
+              }`}
+            >
+              <div className="flex items-center gap-4">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                  lesson.completed ? 'bg-[#70DB3E]/20' : 'bg-[#222222]'
+                }`}>
+                  {lesson.completed ? (
+                    <CheckCircle className="w-5 h-5 text-[#70DB3E]" />
+                  ) : (
+                    <Play className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h4 className={`font-medium ${
+                    lesson.completed ? 'text-[#70DB3E]' : 'text-white'
+                  }`}>
+                    Lesson {index + 1}: {lesson.title}
+                  </h4>
+                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> {lesson.duration}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Play className="w-3 h-3" /> Video
+                    </span>
+                  </div>
+                </div>
+                <Button 
+                  size="sm" 
+                  className={`rounded-lg ${
+                    lesson.completed 
+                      ? 'bg-[#222222] text-gray-400 hover:bg-[#70DB3E]/20 hover:text-[#70DB3E]'
+                      : 'bg-[#70DB3E] text-black hover:bg-[#5BC236]'
+                  }`}
+                >
+                  {lesson.completed ? 'Rewatch' : 'Start'}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quiz Section */}
+        <div className={`rounded-2xl p-6 border ${
+          course.progress === 100 
+            ? 'bg-[#70DB3E]/10 border-[#70DB3E]/30' 
+            : 'bg-[#1a1a1a] border-[#222222]'
+        }`}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                course.progress === 100 ? 'bg-[#70DB3E]/20' : 'bg-[#222222]'
+              }`}>
+                <GraduationCap className={`w-6 h-6 ${
+                  course.progress === 100 ? 'text-[#70DB3E]' : 'text-gray-500'
+                }`} />
+              </div>
+              <div>
+                <h4 className="text-white font-bold">{course.name} Level Quiz</h4>
+                <p className="text-gray-400 text-sm">
+                  {course.progress === 100 
+                    ? 'You\'re ready to take the quiz!' 
+                    : 'Complete all lessons to unlock the quiz'
+                  }
+                </p>
+              </div>
+            </div>
+            <Button
+              disabled={course.progress !== 100}
+              className={`font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                course.progress === 100
+                  ? 'bg-[#70DB3E] text-black hover:bg-[#5BC236] hover:shadow-[0_0_20px_rgba(112,219,62,0.4)]'
+                  : 'bg-[#222222] text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              {course.progress === 100 ? 'Take Quiz' : 'Locked'}
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderCalendarView = () => (
     <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
       <div className="flex items-center justify-between mb-6">
@@ -78,7 +353,6 @@ const Dashboard = ({ onClose }) => {
         </div>
       </div>
       
-      {/* Calendar Grid */}
       <div className="grid grid-cols-7 gap-2 mb-4">
         {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
           <div key={day} className="text-center text-gray-500 text-sm py-2">{day}</div>
@@ -106,7 +380,6 @@ const Dashboard = ({ onClose }) => {
         ))}
       </div>
       
-      {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-6">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-[#70DB3E]/30" />
@@ -347,7 +620,6 @@ const Dashboard = ({ onClose }) => {
         </div>
       ))}
       
-      {/* Quick Chat */}
       <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] mt-6">
         <h4 className="text-white font-medium mb-3">Quick Chat</h4>
         <div className="flex gap-2">
@@ -366,7 +638,6 @@ const Dashboard = ({ onClose }) => {
 
   const renderAffiliateView = () => (
     <div className="space-y-6">
-      {/* Affiliate Stats */}
       <div className="bg-[#70DB3E]/10 rounded-2xl p-6 border border-[#70DB3E]/30">
         <h3 className="text-white font-bold text-xl mb-4">Your Affiliate Dashboard</h3>
         <div className="grid grid-cols-3 gap-4">
@@ -385,7 +656,6 @@ const Dashboard = ({ onClose }) => {
         </div>
       </div>
       
-      {/* Referral Link */}
       <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222]">
         <h4 className="text-white font-medium mb-3">Your Referral Link</h4>
         <div className="flex gap-2">
@@ -401,7 +671,6 @@ const Dashboard = ({ onClose }) => {
         </div>
       </div>
       
-      {/* Tiers */}
       <div className="space-y-4">
         <h4 className="text-white font-medium">Reward Tiers</h4>
         {[
@@ -443,6 +712,8 @@ const Dashboard = ({ onClose }) => {
 
   const renderContent = () => {
     switch (activeView) {
+      case 'courses':
+        return renderCoursesView();
       case 'calendar':
         return renderCalendarView();
       case 'journal':
@@ -475,7 +746,6 @@ const Dashboard = ({ onClose }) => {
       <div className="flex h-full">
         {/* Sidebar */}
         <div className="w-64 bg-[#111111] border-r border-[#1a1a1a] flex flex-col">
-          {/* Logo */}
           <div className="p-6 border-b border-[#1a1a1a]">
             <div className="flex items-center gap-3">
               <div className="text-xl font-bold text-[#70DB3E]">
@@ -484,12 +754,11 @@ const Dashboard = ({ onClose }) => {
             </div>
           </div>
           
-          {/* Nav Items */}
           <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             {sidebarItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => setActiveView(item.id)}
+                onClick={() => { setActiveView(item.id); setSelectedCourse(null); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                   activeView === item.id
                     ? 'bg-[#70DB3E]/10 text-[#70DB3E] border border-[#70DB3E]/30 shadow-[0_0_15px_rgba(112,219,62,0.1)]'
@@ -502,7 +771,6 @@ const Dashboard = ({ onClose }) => {
             ))}
           </nav>
           
-          {/* Close Button */}
           <div className="p-4 border-t border-[#1a1a1a]">
             <Button
               onClick={onClose}
@@ -516,7 +784,6 @@ const Dashboard = ({ onClose }) => {
         
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Top Bar */}
           <div className="h-16 bg-[#111111] border-b border-[#1a1a1a] flex items-center justify-between px-6">
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -546,7 +813,6 @@ const Dashboard = ({ onClose }) => {
             </div>
           </div>
           
-          {/* Content Area */}
           <div className="flex-1 overflow-y-auto p-6">
             <div className="max-w-6xl mx-auto">
               {renderContent()}
