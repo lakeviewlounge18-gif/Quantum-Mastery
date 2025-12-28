@@ -66,12 +66,12 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
             </div>
           </div>
 
-          {/* Coming Soon Badge with Australia's First Community */}
+          {/* Coming Soon Badge with Early Bird Offer */}
           <div className="flex flex-col items-center gap-3 mb-8">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#70DB3E]/10 border border-[#70DB3E]/30 hover:bg-[#70DB3E]/15 transition-all duration-300 cursor-default">
               <span className="w-2 h-2 bg-[#70DB3E] rounded-full animate-pulse shadow-[0_0_8px_#70DB3E]" />
               <span className="text-[#70DB3E] text-sm font-semibold tracking-wide">
-                {heroData.tagline} - Launch Date: February 1st, 2026
+                Coming Soon - 25% Off Early Birds
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
