@@ -534,55 +534,208 @@ const Dashboard = ({ onClose }) => {
     </div>
   );
 
-  const renderCompetitionView = () => (
-    <div className="space-y-4">
-      <div className="bg-[#70DB3E]/10 rounded-2xl p-6 border border-[#70DB3E]/30 mb-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-white font-bold text-xl mb-2">January Trading Competition</h3>
-            <p className="text-gray-400">Compete for $10,000 in prizes!</p>
+  const renderCompetitionView = () => {
+    const leaderboardData = accountType === 'live' ? fullDashboardData.leaderboard.live : fullDashboardData.leaderboard.demo;
+    const topThree = leaderboardData.slice(0, 3);
+    const remaining = leaderboardData.slice(3);
+
+    return (
+      <div className="space-y-6">
+        {/* Competition Cards */}
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Past Competition */}
+          {fullDashboardData.competitions.filter(c => c.status === 'past').slice(0, 1).map((comp) => (
+            <div key={comp.id} className="bg-[#1a1a1a] rounded-2xl p-5 border border-[#222222] opacity-75">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-gray-500/20 flex items-center justify-center">
+                  <Trophy className="w-4 h-4 text-gray-400" />
+                </div>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">Past</span>
+              </div>
+              <h4 className="text-white font-bold mb-2">{comp.title}</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Prize Pool</span>
+                  <span className="text-white">{comp.prize}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Winner</span>
+                  <span className="text-[#70DB3E]">{comp.winner}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Winning Profit</span>
+                  <span className="text-[#70DB3E]">{comp.winnerProfit}</span>
+                </div>
+              </div>
+              <Button variant="ghost" className="w-full mt-4 text-gray-400 hover:text-white text-sm">
+                View Results
+              </Button>
+            </div>
+          ))}
+
+          {/* Current Competition */}
+          {fullDashboardData.competitions.filter(c => c.status === 'current').map((comp) => (
+            <div key={comp.id} className="bg-gradient-to-b from-[#70DB3E]/20 to-[#1a1a1a] rounded-2xl p-5 border-2 border-[#70DB3E]/50 shadow-[0_0_40px_rgba(112,219,62,0.15)]">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-[#70DB3E]/20 flex items-center justify-center">
+                    <Trophy className="w-4 h-4 text-[#70DB3E]" />
+                  </div>
+                  <span className="text-xs text-[#70DB3E] uppercase tracking-wider font-semibold">Live Now</span>
+                </div>
+                <span className="text-xs bg-[#70DB3E] text-black px-2 py-1 rounded-full font-bold">{comp.daysLeft} days left</span>
+              </div>
+              <h4 className="text-white font-bold text-lg mb-2">{comp.title}</h4>
+              <div className="space-y-2 text-sm mb-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Prize Pool</span>
+                  <span className="text-[#70DB3E] font-bold text-lg">{comp.prize}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Participants</span>
+                  <span className="text-white">{comp.participants}</span>
+                </div>
+              </div>
+              {comp.registered ? (
+                <Button className="w-full bg-[#222222] text-[#70DB3E] hover:bg-[#70DB3E]/20 font-semibold">
+                  <CheckCircle className="w-4 h-4 mr-2" /> Registered
+                </Button>
+              ) : (
+                <Button className="w-full bg-[#70DB3E] text-black hover:bg-[#5BC236] font-semibold">
+                  Register Now <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              )}
+            </div>
+          ))}
+
+          {/* Upcoming Competition */}
+          {fullDashboardData.competitions.filter(c => c.status === 'upcoming').slice(0, 1).map((comp) => (
+            <div key={comp.id} className="bg-[#1a1a1a] rounded-2xl p-5 border border-[#222222] hover:border-[#70DB3E]/30 transition-all duration-300">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+                  <Target className="w-4 h-4 text-yellow-400" />
+                </div>
+                <span className="text-xs text-yellow-400 uppercase tracking-wider">Coming Soon</span>
+              </div>
+              <h4 className="text-white font-bold mb-2">{comp.title}</h4>
+              <div className="space-y-2 text-sm mb-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Prize Pool</span>
+                  <span className="text-yellow-400 font-bold">{comp.prize}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Starts</span>
+                  <span className="text-white">{comp.startDate}</span>
+                </div>
+              </div>
+              <Button className="w-full bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 font-semibold">
+                Pre-Register <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          ))}
+        </div>
+
+        {/* Leaderboard Section */}
+        <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-white font-bold text-xl">Leaderboard</h3>
+            {/* Account Type Toggle */}
+            <div className="flex bg-[#111111] rounded-xl p-1">
+              <button
+                onClick={() => setAccountType('live')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  accountType === 'live'
+                    ? 'bg-[#70DB3E] text-black'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Live Account
+              </button>
+              <button
+                onClick={() => setAccountType('demo')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  accountType === 'demo'
+                    ? 'bg-[#70DB3E] text-black'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Demo Account
+              </button>
+            </div>
           </div>
-          <Trophy className="w-12 h-12 text-yellow-400" />
+
+          {/* Top 3 Winners Podium */}
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            {/* 2nd Place */}
+            <div className="flex flex-col items-center pt-8">
+              <div className="relative mb-3">
+                <img src={topThree[1]?.avatar} alt={topThree[1]?.name} className="w-16 h-16 rounded-full object-cover border-2 border-gray-400" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gray-400 flex items-center justify-center">
+                  <span className="text-black text-xs font-bold">2</span>
+                </div>
+              </div>
+              <span className="text-xl mb-1">{topThree[1]?.countryFlag}</span>
+              <p className="text-white font-medium text-sm text-center">{topThree[1]?.name}</p>
+              <p className="text-gray-500 text-xs">{topThree[1]?.winRate}% Win</p>
+              <p className="text-[#70DB3E] font-bold">${topThree[1]?.profit.toLocaleString()}</p>
+            </div>
+
+            {/* 1st Place */}
+            <div className="flex flex-col items-center">
+              <Crown className="w-8 h-8 text-yellow-400 mb-2" />
+              <div className="relative mb-3">
+                <img src={topThree[0]?.avatar} alt={topThree[0]?.name} className="w-20 h-20 rounded-full object-cover border-4 border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.4)]" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+                  <span className="text-black text-sm font-bold">1</span>
+                </div>
+              </div>
+              <span className="text-2xl mb-1">{topThree[0]?.countryFlag}</span>
+              <p className="text-white font-bold text-center">{topThree[0]?.name}</p>
+              <p className="text-gray-500 text-xs">{topThree[0]?.winRate}% Win</p>
+              <p className="text-[#70DB3E] font-bold text-lg">${topThree[0]?.profit.toLocaleString()}</p>
+            </div>
+
+            {/* 3rd Place */}
+            <div className="flex flex-col items-center pt-12">
+              <div className="relative mb-3">
+                <img src={topThree[2]?.avatar} alt={topThree[2]?.name} className="w-14 h-14 rounded-full object-cover border-2 border-amber-600" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-amber-600 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">3</span>
+                </div>
+              </div>
+              <span className="text-xl mb-1">{topThree[2]?.countryFlag}</span>
+              <p className="text-white font-medium text-sm text-center">{topThree[2]?.name}</p>
+              <p className="text-gray-500 text-xs">{topThree[2]?.winRate}% Win</p>
+              <p className="text-[#70DB3E] font-bold">${topThree[2]?.profit.toLocaleString()}</p>
+            </div>
+          </div>
+
+          {/* Remaining Traders List */}
+          <div className="space-y-2">
+            {remaining.map((trader) => (
+              <div
+                key={trader.rank}
+                className="flex items-center justify-between p-3 bg-[#111111] rounded-xl hover:bg-[#1a1a1a] transition-all cursor-pointer"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-[#222222] flex items-center justify-center text-gray-400 font-medium text-sm">
+                    {trader.rank}
+                  </span>
+                  <span className="text-lg">{trader.countryFlag}</span>
+                  <img src={trader.avatar} alt={trader.name} className="w-8 h-8 rounded-full object-cover" />
+                  <span className="text-white font-medium">{trader.name}</span>
+                </div>
+                <div className="flex items-center gap-6">
+                  <span className="text-gray-400 text-sm">{trader.winRate}% Win</span>
+                  <span className="text-[#70DB3E] font-bold">${trader.profit.toLocaleString()}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      
-      <h3 className="text-white font-semibold text-lg mb-4">Leaderboard</h3>
-      
-      {fullDashboardData.leaderboard.map((trader) => (
-        <div
-          key={trader.rank}
-          className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 cursor-pointer hover:-translate-y-1 ${
-            trader.rank <= 3 ? 'border-yellow-500/30 hover:border-yellow-500/50' : 'border-[#222222] hover:border-[#70DB3E]/50'
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                trader.rank === 1 ? 'bg-yellow-500 text-black' :
-                trader.rank === 2 ? 'bg-gray-300 text-black' :
-                trader.rank === 3 ? 'bg-amber-600 text-white' :
-                'bg-[#222222] text-white'
-              }`}>
-                {trader.rank}
-              </div>
-              <img
-                src={trader.avatar}
-                alt={trader.name}
-                className="w-10 h-10 rounded-full object-cover"
-              />
-              <div>
-                <p className="text-white font-medium">{trader.name}</p>
-                <p className="text-gray-500 text-sm">{trader.winRate}% win rate</p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-[#70DB3E] font-bold">+${trader.profit.toLocaleString()}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+    );
+  };
 
   const renderCommunityView = () => (
     <div className="space-y-4">
