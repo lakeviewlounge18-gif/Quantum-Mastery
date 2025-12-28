@@ -354,59 +354,261 @@ const Dashboard = ({ onClose }) => {
     );
   };
 
-  const renderCalendarView = () => (
-    <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-white font-semibold text-lg">January 2025</h3>
-        <div className="flex gap-2">
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10">&lt;</Button>
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10">&gt;</Button>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-7 gap-2 mb-4">
-        {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-          <div key={day} className="text-center text-gray-500 text-sm py-2">{day}</div>
-        ))}
-      </div>
-      <div className="grid grid-cols-7 gap-2">
-        {calendarJournalData.sampleDays.map((day, index) => (
-          <div
-            key={index}
-            className={`aspect-square rounded-lg flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 ${
-              day.profit > 0
-                ? 'bg-[#70DB3E]/20 border border-[#70DB3E]/30 hover:bg-[#70DB3E]/30'
-                : day.profit < 0
-                ? 'bg-red-500/20 border border-red-500/30 hover:bg-red-500/30'
-                : 'bg-[#111111] border border-[#222222] hover:border-[#333333]'
-            }`}
-          >
-            <span className="text-white text-sm font-medium">{day.date}</span>
-            {day.trades > 0 && (
-              <span className={`text-xs ${day.profit > 0 ? 'text-[#70DB3E]' : 'text-red-500'}`}>
-                {day.profit > 0 ? '+' : ''}{day.profit}
-              </span>
-            )}
+  const renderCalendarView = () => {
+    const maxDailyPnL = Math.max(...calendarJournalData.dailyPnL.map(d => d.value));
+    const maxHourlyPnL = Math.max(...calendarJournalData.hourlyPnL.map(d => Math.abs(d.value)));
+    
+    return (
+      <div className="space-y-6">
+        {/* Top Metrics Bar */}
+        <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222]">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div>
+                <span className="text-gray-500 text-xs">Trades</span>
+                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.totalTrades.toLocaleString()}</p>
+              </div>
+              <div>
+                <span className="text-gray-500 text-xs">Wins</span>
+                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.wins.toLocaleString()}</p>
+              </div>
+              <div>
+                <span className="text-gray-500 text-xs">Profits</span>
+                <p className="text-[#3B82F6] font-bold text-lg">${calendarJournalData.monthMetrics.profits.toLocaleString()}</p>
+              </div>
+              <div>
+                <span className="text-gray-500 text-xs">Percent</span>
+                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.percent}%</p>
+              </div>
+            </div>
           </div>
-        ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Calendar Section */}
+          <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 p-1">&lt;</Button>
+                <h3 className="text-white font-semibold text-lg">January 2025</h3>
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 p-1">&gt;</Button>
+              </div>
+            </div>
+            
+            {/* Day Headers */}
+            <div className="grid grid-cols-8 gap-1 mb-2">
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Total'].map((day) => (
+                <div key={day} className="text-center text-gray-500 text-xs py-2">{day}</div>
+              ))}
+            </div>
+
+            {/* Calendar Grid */}
+            <div className="space-y-1">
+              {/* Week rows - simplified for demo */}
+              {[0, 1, 2].map((weekIndex) => (
+                <div key={weekIndex} className="grid grid-cols-8 gap-1">
+                  {calendarJournalData.sampleDays.slice(weekIndex * 7, (weekIndex + 1) * 7).map((day, dayIndex) => (
+                    <div
+                      key={dayIndex}
+                      className={`rounded-lg p-2 min-h-[70px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+                        day.profit > 10000
+                          ? 'bg-[#3B82F6]/30 border border-[#3B82F6]/50'
+                          : day.profit > 0
+                          ? 'bg-[#3B82F6]/10 border border-[#3B82F6]/20'
+                          : day.profit < 0
+                          ? 'bg-red-500/10 border border-red-500/20'
+                          : 'bg-[#111111] border border-[#222222]'
+                      }`}
+                    >
+                      <span className="text-gray-400 text-xs">{day.date}</span>
+                      {day.trades > 0 && (
+                        <div className="mt-1">
+                          <p className={`text-xs font-bold ${day.profit > 0 ? 'text-[#3B82F6]' : 'text-red-500'}`}>
+                            ${day.profit > 1000 ? (day.profit / 1000).toFixed(0) + 'K' : day.profit.toLocaleString()}
+                          </p>
+                          <p className={`text-[10px] ${day.profit > 0 ? 'text-[#3B82F6]/70' : 'text-red-500/70'}`}>
+                            {day.percent > 0 ? '+' : ''}{day.percent}%
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  {/* Weekly Total */}
+                  <div className="rounded-lg p-2 min-h-[70px] bg-[#3B82F6]/5 border border-[#3B82F6]/20">
+                    <span className="text-gray-500 text-xs">•</span>
+                    <div className="mt-1">
+                      <p className="text-xs font-bold text-[#3B82F6]">
+                        ${(calendarJournalData.sampleDays.slice(weekIndex * 7, (weekIndex + 1) * 7).reduce((sum, d) => sum + d.profit, 0) / 1000).toFixed(0)}K
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side - Charts */}
+          <div className="space-y-6">
+            {/* Net Daily P&L Chart */}
+            <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Net Daily P&L</h3>
+                <DollarSign className="w-5 h-5 text-[#3B82F6]" />
+              </div>
+              
+              {/* Y-axis labels and chart */}
+              <div className="flex">
+                <div className="flex flex-col justify-between text-right pr-2 text-xs text-gray-500 h-[150px]">
+                  <span>$800,000</span>
+                  <span>$400,000</span>
+                  <span>$200,000</span>
+                  <span>$0</span>
+                </div>
+                <div className="flex-1 flex items-end gap-1 h-[150px]">
+                  {calendarJournalData.dailyPnL.map((day, index) => (
+                    <div key={index} className="flex-1 flex flex-col items-center justify-end">
+                      <div
+                        className="w-full bg-[#3B82F6] rounded-t-sm transition-all duration-300 hover:bg-[#60A5FA]"
+                        style={{ height: `${(day.value / maxDailyPnL) * 100}%` }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* X-axis labels */}
+              <div className="flex pl-16 mt-2">
+                {calendarJournalData.dailyPnL.filter((_, i) => i % 2 === 0).map((day, index) => (
+                  <div key={index} className="flex-1 text-center text-xs text-gray-500">
+                    {day.date}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Hourly/Daily P&L Chart */}
+            <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setPnlViewType('hourly')}
+                    className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
+                      pnlViewType === 'hourly'
+                        ? 'bg-[#3B82F6]/20 text-[#3B82F6] border-b-2 border-[#3B82F6]'
+                        : 'text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    Hourly
+                  </button>
+                  <button
+                    onClick={() => setPnlViewType('daily')}
+                    className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
+                      pnlViewType === 'daily'
+                        ? 'bg-[#3B82F6]/20 text-[#3B82F6] border-b-2 border-[#3B82F6]'
+                        : 'text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    Daily
+                  </button>
+                </div>
+                <select className="bg-[#222222] text-[#3B82F6] text-sm rounded-lg px-3 py-1 border-none focus:outline-none">
+                  <option>Wins vs Losses</option>
+                  <option>Profit Only</option>
+                  <option>Loss Only</option>
+                </select>
+              </div>
+              
+              {/* Chart */}
+              <div className="flex">
+                <div className="flex flex-col justify-between text-right pr-2 text-xs text-gray-500 h-[120px]">
+                  <span>800</span>
+                  <span>400</span>
+                  <span>0</span>
+                  <span>-200</span>
+                </div>
+                <div className="flex-1 flex items-end gap-0.5 h-[120px] relative">
+                  {/* Zero line */}
+                  <div className="absolute bottom-[20%] left-0 right-0 border-t border-gray-600/50" />
+                  
+                  {calendarJournalData.hourlyPnL.map((hour, index) => (
+                    <div key={index} className="flex-1 flex flex-col items-center justify-end h-full">
+                      {hour.value >= 0 ? (
+                        <div
+                          className="w-full bg-[#3B82F6] rounded-t-sm transition-all duration-300 hover:bg-[#60A5FA]"
+                          style={{ height: `${(hour.value / maxHourlyPnL) * 60}%`, marginBottom: '20%' }}
+                        />
+                      ) : (
+                        <div
+                          className="w-full bg-red-500 rounded-b-sm transition-all duration-300 hover:bg-red-400"
+                          style={{ height: `${(Math.abs(hour.value) / maxHourlyPnL) * 20}%`, marginTop: 'auto' }}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* X-axis labels */}
+              <div className="flex pl-8 mt-2">
+                {calendarJournalData.hourlyPnL.filter((_, i) => i % 4 === 0).map((hour, index) => (
+                  <div key={index} className="flex-1 text-center text-xs text-gray-500">
+                    {hour.hour}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Yearly Performance */}
+        <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-white font-semibold">Yearly Performance</h3>
+            <div className="flex items-center gap-2">
+              <DollarSign className="w-5 h-5 text-[#3B82F6]" />
+            </div>
+          </div>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <td className="text-gray-500 text-sm py-2 px-3"></td>
+                  {calendarJournalData.yearlyPerformance.months.map((m) => (
+                    <td key={m.month} className="text-gray-400 text-sm text-center py-2 px-3">{m.month}</td>
+                  ))}
+                  <td className="text-[#3B82F6] text-sm text-center py-2 px-3 font-semibold">YTD</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-gray-500 text-sm py-2 px-3">{calendarJournalData.yearlyPerformance.year}</td>
+                  {calendarJournalData.yearlyPerformance.months.map((m, index) => (
+                    <td key={index} className="text-center py-2 px-3">
+                      {m.profit !== null ? (
+                        <div className="bg-[#3B82F6]/10 rounded-lg p-2 border border-[#3B82F6]/30">
+                          <p className="text-[#3B82F6] text-xs font-bold">+{(m.profit / 1000000).toFixed(1)}M</p>
+                          <p className="text-gray-500 text-[10px]">{m.trades} trades</p>
+                        </div>
+                      ) : (
+                        <span className="text-gray-600">-</span>
+                      )}
+                    </td>
+                  ))}
+                  <td className="text-center py-2 px-3">
+                    <div className="bg-[#3B82F6]/20 rounded-lg p-2 border border-[#3B82F6]/50">
+                      <p className="text-[#3B82F6] text-xs font-bold">+{(calendarJournalData.yearlyPerformance.ytd.profit / 1000000).toFixed(1)}M</p>
+                      <p className="text-gray-500 text-[10px]">{calendarJournalData.yearlyPerformance.ytd.trades} trades</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      
-      <div className="flex items-center justify-center gap-6 mt-6">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded bg-[#70DB3E]/30" />
-          <span className="text-gray-500 text-sm">Profit Day</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded bg-red-500/30" />
-          <span className="text-gray-500 text-sm">Loss Day</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded bg-[#111111] border border-[#222222]" />
-          <span className="text-gray-500 text-sm">No Trades</span>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const renderJournalView = () => (
     <div className="space-y-4">
