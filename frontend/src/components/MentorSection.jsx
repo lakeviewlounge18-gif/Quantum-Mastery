@@ -21,7 +21,7 @@ const MentorSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Mentor Image */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgb(218,255,1)]/20 to-[rgb(127,74,142)]/20 rounded-3xl blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 rounded-3xl blur-3xl" />
             <div className="relative bg-[rgb(26,28,30)] rounded-3xl p-2 border border-[rgb(63,63,63)]">
               <img
                 src={mentorData.image}
@@ -33,7 +33,7 @@ const MentorSection = () => {
                 <div className="grid grid-cols-4 gap-2 bg-[rgb(17,17,19)]/90 backdrop-blur-sm rounded-xl p-4 border border-[rgb(63,63,63)]">
                   {mentorData.stats.map((stat, index) => (
                     <div key={index} className="text-center">
-                      <p className="text-[rgb(218,255,1)] text-xl font-bold">{stat.value}</p>
+                      <p className="text-[rgb(0,212,255)] text-xl font-bold">{stat.value}</p>
                       <p className="text-[rgb(161,161,170)] text-xs">{stat.label}</p>
                     </div>
                   ))}
@@ -44,9 +44,9 @@ const MentorSection = () => {
 
           {/* Mentor Info */}
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(218,255,1)]/10 border border-[rgb(218,255,1)]/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[rgb(0,212,255)]/10 to-[rgb(186,85,211)]/10 border border-[rgb(0,212,255)]/30 mb-6">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-[rgb(218,255,1)] fill-[rgb(218,255,1)]" />
+                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
               <span className="text-[rgb(161,161,170)] text-sm ml-2">Top Rated Mentor</span>
             </div>
@@ -54,7 +54,7 @@ const MentorSection = () => {
             <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">
               {mentorData.name}
             </h3>
-            <p className="text-[rgb(218,255,1)] text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-6 bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
               {mentorData.title}
             </p>
 
@@ -64,7 +64,7 @@ const MentorSection = () => {
 
             {/* Quote */}
             <div className="relative bg-[rgb(26,28,30)] rounded-2xl p-6 border border-[rgb(63,63,63)]">
-              <Quote className="absolute -top-3 left-6 w-8 h-8 text-[rgb(218,255,1)] fill-[rgb(218,255,1)]" />
+              <Quote className="absolute -top-3 left-6 w-8 h-8 text-[rgb(0,212,255)] fill-[rgb(0,212,255)]" />
               <p className="text-white italic text-lg pl-4">
                 "{mentorData.quote}"
               </p>

@@ -23,10 +23,10 @@ const SuccessStoriesSection = () => {
           {successStoriesData.stories.map((story) => (
             <div
               key={story.id}
-              className="group relative bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-8 transition-all duration-300 hover:border-[rgb(218,255,1)] hover:shadow-[0_0_40px_rgba(218,255,1,0.15)]"
+              className="group relative bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-8 transition-all duration-300 hover:border-[rgb(0,212,255)] hover:shadow-[0_0_40px_rgba(0,212,255,0.15)]"
             >
               {/* Quote Icon */}
-              <Quote className="w-10 h-10 text-[rgb(218,255,1)]/30 mb-6" />
+              <Quote className="w-10 h-10 text-[rgb(0,212,255)]/30 mb-6" />
 
               {/* Quote Text */}
               <p className="text-[rgb(218,218,218)] text-lg mb-8 leading-relaxed">
@@ -34,9 +34,9 @@ const SuccessStoriesSection = () => {
               </p>
 
               {/* Profit Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(218,255,1)]/10 border border-[rgb(218,255,1)]/30 mb-6">
-                <TrendingUp className="w-4 h-4 text-[rgb(218,255,1)]" />
-                <span className="text-[rgb(218,255,1)] font-bold">{story.profit}</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(0,212,255)]/10 border border-[rgb(0,212,255)]/30 mb-6">
+                <TrendingUp className="w-4 h-4 text-[rgb(0,212,255)]" />
+                <span className="text-[rgb(0,212,255)] font-bold">{story.profit}</span>
               </div>
 
               {/* Author Info */}
@@ -44,7 +44,7 @@ const SuccessStoriesSection = () => {
                 <img
                   src={story.avatar}
                   alt={story.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[rgb(63,63,63)] group-hover:border-[rgb(218,255,1)] transition-colors"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[rgb(63,63,63)] group-hover:border-[rgb(0,212,255)] transition-colors"
                 />
                 <div>
                   <p className="text-white font-semibold">{story.name}</p>
@@ -57,7 +57,7 @@ const SuccessStoriesSection = () => {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-4 text-[rgb(218,255,1)] fill-[rgb(218,255,1)]"
+                    className="w-4 h-4 text-yellow-400 fill-yellow-400"
                   />
                 ))}
               </div>
