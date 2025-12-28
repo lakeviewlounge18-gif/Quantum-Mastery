@@ -5,21 +5,21 @@ import { fastTrackData } from '../data/mock';
 const FastTrackSection = () => {
   return (
     <section id="program" className="py-24 relative">
-      <div className="absolute inset-0 bg-[rgb(17,17,19)]" />
+      <div className="absolute inset-0 bg-[#0a0a0a]" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(0,212,255)]/10 border border-[rgb(0,212,255)]/30 mb-6">
-            <Zap className="w-4 h-4 text-[rgb(0,212,255)]" />
-            <span className="text-[rgb(0,212,255)] text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#70DB3E]/10 border border-[#70DB3E]/30 mb-6 hover:bg-[#70DB3E]/20 transition-all duration-300">
+            <Zap className="w-4 h-4 text-[#70DB3E]" />
+            <span className="text-[#70DB3E] text-sm font-medium">
               {fastTrackData.subtitle}
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             {fastTrackData.title}
           </h2>
-          <p className="text-[rgb(161,161,170)] text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             {fastTrackData.description}
           </p>
         </div>
@@ -27,7 +27,7 @@ const FastTrackSection = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[rgb(0,212,255)] via-[rgb(186,85,211)] to-transparent lg:-translate-x-1/2" />
+          <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#70DB3E] via-[#70DB3E]/50 to-transparent lg:-translate-x-1/2" />
 
           <div className="space-y-8">
             {fastTrackData.days.map((day, index) => (
@@ -44,21 +44,21 @@ const FastTrackSection = () => {
                   }`}
                 >
                   <div
-                    className={`inline-block bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-6 transition-all hover:border-[rgb(0,212,255)] hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] group`}
+                    className="group inline-block bg-[#111111] border border-[#1a1a1a] rounded-2xl p-6 transition-all duration-500 hover:border-[#70DB3E]/50 hover:shadow-[0_0_40px_rgba(112,219,62,0.15)] hover:-translate-y-1 cursor-pointer"
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-[rgb(0,212,255)] text-sm font-bold">
+                      <span className="text-[#70DB3E] text-sm font-bold">
                         DAY {day.day}
                       </span>
-                      <div className="h-px flex-1 bg-[rgb(63,63,63)] group-hover:bg-gradient-to-r group-hover:from-[rgb(0,212,255)]/30 group-hover:to-[rgb(186,85,211)]/30 transition-colors" />
+                      <div className="h-px flex-1 bg-[#222222] group-hover:bg-[#70DB3E]/30 transition-colors duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{day.title}</h3>
-                    <p className="text-[rgb(161,161,170)]">{day.description}</p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#70DB3E] transition-colors duration-300">{day.title}</h3>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{day.description}</p>
                   </div>
                 </div>
 
                 {/* Day Number Node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(0,212,255,0.5)]">
+                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-8 h-8 rounded-full bg-[#70DB3E] flex items-center justify-center text-black font-bold text-sm shadow-[0_0_25px_rgba(112,219,62,0.6)] hover:shadow-[0_0_35px_rgba(112,219,62,0.8)] transition-all duration-300 hover:scale-110">
                   {day.day}
                 </div>
 
@@ -70,8 +70,8 @@ const FastTrackSection = () => {
 
           {/* Completion Badge */}
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-4 bg-[rgb(26,28,30)] rounded-2xl border border-[rgb(0,212,255)] shadow-[0_0_30px_rgba(0,212,255,0.2)]">
-              <CheckCircle className="w-6 h-6 text-[rgb(0,212,255)]" />
+            <div className="inline-flex items-center gap-3 px-6 py-4 bg-[#111111] rounded-2xl border border-[#70DB3E]/50 shadow-[0_0_40px_rgba(112,219,62,0.2)] hover:shadow-[0_0_60px_rgba(112,219,62,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+              <CheckCircle className="w-6 h-6 text-[#70DB3E]" />
               <span className="text-white font-semibold">
                 Become a Confident Trader in Just 7 Days
               </span>

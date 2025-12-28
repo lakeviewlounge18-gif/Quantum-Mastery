@@ -5,7 +5,7 @@ import { successStoriesData } from '../data/mock';
 const SuccessStoriesSection = () => {
   return (
     <section id="stories" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgb(17,17,19)] via-[rgb(26,28,30)] to-[rgb(17,17,19)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -13,7 +13,7 @@ const SuccessStoriesSection = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             {successStoriesData.title}
           </h2>
-          <p className="text-[rgb(161,161,170)] text-lg">
+          <p className="text-gray-400 text-lg">
             {successStoriesData.subtitle}
           </p>
         </div>
@@ -23,20 +23,20 @@ const SuccessStoriesSection = () => {
           {successStoriesData.stories.map((story) => (
             <div
               key={story.id}
-              className="group relative bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-8 transition-all duration-300 hover:border-[rgb(0,212,255)] hover:shadow-[0_0_40px_rgba(0,212,255,0.15)]"
+              className="group relative bg-[#111111] border border-[#1a1a1a] rounded-2xl p-8 transition-all duration-500 hover:border-[#70DB3E]/50 hover:shadow-[0_0_50px_rgba(112,219,62,0.15)] hover:-translate-y-2 cursor-pointer"
             >
               {/* Quote Icon */}
-              <Quote className="w-10 h-10 text-[rgb(0,212,255)]/30 mb-6" />
+              <Quote className="w-10 h-10 text-[#70DB3E]/30 mb-6 group-hover:text-[#70DB3E]/50 transition-colors duration-300" />
 
               {/* Quote Text */}
-              <p className="text-[rgb(218,218,218)] text-lg mb-8 leading-relaxed">
+              <p className="text-gray-300 text-lg mb-8 leading-relaxed group-hover:text-white transition-colors duration-300">
                 "{story.quote}"
               </p>
 
               {/* Profit Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(0,212,255)]/10 border border-[rgb(0,212,255)]/30 mb-6">
-                <TrendingUp className="w-4 h-4 text-[rgb(0,212,255)]" />
-                <span className="text-[rgb(0,212,255)] font-bold">{story.profit}</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#70DB3E]/10 border border-[#70DB3E]/30 mb-6 group-hover:bg-[#70DB3E]/20 transition-all duration-300">
+                <TrendingUp className="w-4 h-4 text-[#70DB3E]" />
+                <span className="text-[#70DB3E] font-bold">{story.profit}</span>
               </div>
 
               {/* Author Info */}
@@ -44,11 +44,11 @@ const SuccessStoriesSection = () => {
                 <img
                   src={story.avatar}
                   alt={story.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[rgb(63,63,63)] group-hover:border-[rgb(0,212,255)] transition-colors"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[#1a1a1a] group-hover:border-[#70DB3E]/50 transition-colors duration-300"
                 />
                 <div>
                   <p className="text-white font-semibold">{story.name}</p>
-                  <p className="text-[rgb(161,161,170)] text-sm">{story.role}</p>
+                  <p className="text-gray-500 text-sm">{story.role}</p>
                 </div>
               </div>
 
@@ -61,6 +61,9 @@ const SuccessStoriesSection = () => {
                   />
                 ))}
               </div>
+              
+              {/* Hover glow */}
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#70DB3E] rounded-full blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
             </div>
           ))}
         </div>

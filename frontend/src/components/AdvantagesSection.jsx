@@ -14,7 +14,7 @@ const iconMap = {
 const AdvantagesSection = () => {
   return (
     <section id="features" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgb(17,17,19)] via-[rgb(26,28,30)] to-[rgb(17,17,19)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -22,7 +22,7 @@ const AdvantagesSection = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             {advantagesData.title}
           </h2>
-          <p className="text-lg font-medium bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
+          <p className="text-lg font-medium text-[#70DB3E]">
             {advantagesData.subtitle}
           </p>
         </div>
@@ -34,24 +34,27 @@ const AdvantagesSection = () => {
             return (
               <div
                 key={advantage.id}
-                className="group relative bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-8 transition-all duration-300 hover:border-[rgb(0,212,255)] hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] overflow-hidden"
+                className="group relative bg-[#111111] border border-[#1a1a1a] rounded-2xl p-8 transition-all duration-500 hover:border-[#70DB3E]/50 hover:shadow-[0_0_50px_rgba(112,219,62,0.15)] overflow-hidden hover:-translate-y-2 cursor-pointer"
               >
                 {/* Top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#70DB3E] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#70DB3E]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-7 h-7 text-[rgb(0,212,255)]" />
+                <div className="relative w-14 h-14 rounded-xl bg-[#70DB3E]/10 flex items-center justify-center mb-6 group-hover:bg-[#70DB3E]/20 group-hover:scale-110 transition-all duration-300">
+                  <IconComponent className="w-7 h-7 text-[#70DB3E] group-hover:drop-shadow-[0_0_10px_rgba(112,219,62,0.8)]" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-white mb-3">{advantage.title}</h3>
-                <p className="text-[rgb(161,161,170)] leading-relaxed">
+                <h3 className="relative text-xl font-bold text-white mb-3 group-hover:text-[#70DB3E] transition-colors duration-300">{advantage.title}</h3>
+                <p className="relative text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                   {advantage.description}
                 </p>
 
-                {/* Hover glow effect */}
-                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] rounded-full blur-[80px] opacity-0 group-hover:opacity-15 transition-opacity" />
+                {/* Corner glow */}
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#70DB3E] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
               </div>
             );
           })}
