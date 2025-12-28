@@ -11,8 +11,6 @@ import {
   TrendingUp,
   TrendingDown,
   DollarSign,
-  Activity,
-  Eye,
   MessageSquare,
   Heart,
   Send,
@@ -20,16 +18,14 @@ import {
   Bell,
   Search,
   Plus,
-  ChevronRight,
   Star,
   Crown
 } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
+import { Card, CardHeader, CardContent } from './ui/card';
 import { Button } from './ui/button';
-import { fullDashboardData, dashboardFeatures, calendarJournalData } from '../data/mock';
+import { fullDashboardData, calendarJournalData } from '../data/mock';
 
 const Dashboard = ({ onClose }) => {
-  const [activeTab, setActiveTab] = useState('overview');
   const [activeView, setActiveView] = useState('dashboard');
 
   const sidebarItems = [
@@ -53,17 +49,17 @@ const Dashboard = ({ onClose }) => {
       ].map((stat, index) => (
         <div
           key={index}
-          className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)] hover:border-[rgb(0,212,255)]/50 transition-all"
+          className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] hover:border-[#70DB3E]/50 hover:shadow-[0_0_30px_rgba(112,219,62,0.1)] transition-all duration-300 cursor-pointer group"
         >
-          <p className="text-[rgb(161,161,170)] text-sm mb-1">{stat.label}</p>
-          <p className="text-white text-2xl font-bold mb-1">{stat.value}</p>
+          <p className="text-gray-500 text-sm mb-1">{stat.label}</p>
+          <p className="text-white text-2xl font-bold mb-1 group-hover:text-[#70DB3E] transition-colors">{stat.value}</p>
           <div className="flex items-center gap-1">
             {stat.positive ? (
-              <TrendingUp className="w-4 h-4 text-[rgb(0,212,255)]" />
+              <TrendingUp className="w-4 h-4 text-[#70DB3E]" />
             ) : (
               <TrendingDown className="w-4 h-4 text-red-500" />
             )}
-            <span className={`text-sm font-medium ${stat.positive ? 'text-[rgb(0,212,255)]' : 'text-red-500'}`}>
+            <span className={`text-sm font-medium ${stat.positive ? 'text-[#70DB3E]' : 'text-red-500'}`}>
               {stat.change}
             </span>
           </div>
@@ -73,36 +69,36 @@ const Dashboard = ({ onClose }) => {
   );
 
   const renderCalendarView = () => (
-    <div className="bg-[rgb(38,40,42)] rounded-2xl p-6 border border-[rgb(63,63,63)]">
+    <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-white font-semibold text-lg">January 2025</h3>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" className="text-[rgb(161,161,170)]">&lt;</Button>
-          <Button variant="ghost" size="sm" className="text-[rgb(161,161,170)]">&gt;</Button>
+          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10">&lt;</Button>
+          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10">&gt;</Button>
         </div>
       </div>
       
       {/* Calendar Grid */}
       <div className="grid grid-cols-7 gap-2 mb-4">
         {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-          <div key={day} className="text-center text-[rgb(161,161,170)] text-sm py-2">{day}</div>
+          <div key={day} className="text-center text-gray-500 text-sm py-2">{day}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 gap-2">
         {calendarJournalData.sampleDays.map((day, index) => (
           <div
             key={index}
-            className={`aspect-square rounded-lg flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 ${
+            className={`aspect-square rounded-lg flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 ${
               day.profit > 0
-                ? 'bg-[rgb(0,212,255)]/20 border border-[rgb(0,212,255)]/30'
+                ? 'bg-[#70DB3E]/20 border border-[#70DB3E]/30 hover:bg-[#70DB3E]/30'
                 : day.profit < 0
-                ? 'bg-red-500/20 border border-red-500/30'
-                : 'bg-[rgb(26,28,30)] border border-[rgb(63,63,63)]'
+                ? 'bg-red-500/20 border border-red-500/30 hover:bg-red-500/30'
+                : 'bg-[#111111] border border-[#222222] hover:border-[#333333]'
             }`}
           >
             <span className="text-white text-sm font-medium">{day.date}</span>
             {day.trades > 0 && (
-              <span className={`text-xs ${day.profit > 0 ? 'text-[rgb(0,212,255)]' : 'text-red-500'}`}>
+              <span className={`text-xs ${day.profit > 0 ? 'text-[#70DB3E]' : 'text-red-500'}`}>
                 {day.profit > 0 ? '+' : ''}{day.profit}
               </span>
             )}
@@ -113,16 +109,16 @@ const Dashboard = ({ onClose }) => {
       {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-6">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded bg-[rgb(0,212,255)]/30" />
-          <span className="text-[rgb(161,161,170)] text-sm">Profit Day</span>
+          <div className="w-4 h-4 rounded bg-[#70DB3E]/30" />
+          <span className="text-gray-500 text-sm">Profit Day</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-red-500/30" />
-          <span className="text-[rgb(161,161,170)] text-sm">Loss Day</span>
+          <span className="text-gray-500 text-sm">Loss Day</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded bg-[rgb(26,28,30)] border border-[rgb(63,63,63)]" />
-          <span className="text-[rgb(161,161,170)] text-sm">No Trades</span>
+          <div className="w-4 h-4 rounded bg-[#111111] border border-[#222222]" />
+          <span className="text-gray-500 text-sm">No Trades</span>
         </div>
       </div>
     </div>
@@ -132,7 +128,7 @@ const Dashboard = ({ onClose }) => {
     <div className="space-y-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-white font-semibold text-lg">Trade Journal</h3>
-        <Button className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-xl">
+        <Button className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-xl hover:shadow-[0_0_20px_rgba(112,219,62,0.4)] transition-all duration-300">
           <Plus className="w-4 h-4 mr-2" /> New Entry
         </Button>
       </div>
@@ -140,29 +136,29 @@ const Dashboard = ({ onClose }) => {
       {fullDashboardData.recentTrades.map((trade) => (
         <div
           key={trade.id}
-          className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)] hover:border-[rgb(0,212,255)]/50 transition-all"
+          className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] hover:border-[#70DB3E]/50 hover:shadow-[0_0_20px_rgba(112,219,62,0.1)] transition-all duration-300 cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                trade.type === 'BUY' ? 'bg-[rgb(0,212,255)]/20' : 'bg-[rgb(186,85,211)]/20'
+                trade.type === 'BUY' ? 'bg-[#70DB3E]/20' : 'bg-red-500/20'
               }`}>
-                <DollarSign className={`w-5 h-5 ${trade.type === 'BUY' ? 'text-[rgb(0,212,255)]' : 'text-[rgb(186,85,211)]'}`} />
+                <DollarSign className={`w-5 h-5 ${trade.type === 'BUY' ? 'text-[#70DB3E]' : 'text-red-500'}`} />
               </div>
               <div>
-                <p className="text-white font-medium">{trade.pair}</p>
-                <p className="text-[rgb(161,161,170)] text-sm">{trade.type} @ {trade.entry}</p>
+                <p className="text-white font-medium group-hover:text-[#70DB3E] transition-colors">{trade.pair}</p>
+                <p className="text-gray-500 text-sm">{trade.type} @ {trade.entry}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className={`font-semibold ${trade.profit > 0 ? 'text-[rgb(0,212,255)]' : 'text-red-500'}`}>
+              <p className={`font-semibold ${trade.profit > 0 ? 'text-[#70DB3E]' : 'text-red-500'}`}>
                 {trade.profit > 0 ? '+' : ''}${trade.profit}
               </p>
-              <p className="text-[rgb(161,161,170)] text-xs">{trade.date}</p>
+              <p className="text-gray-500 text-xs">{trade.date}</p>
             </div>
           </div>
-          <div className="bg-[rgb(26,28,30)] rounded-lg p-3">
-            <p className="text-[rgb(161,161,170)] text-sm">
+          <div className="bg-[#111111] rounded-lg p-3">
+            <p className="text-gray-400 text-sm">
               <span className="text-white">Notes:</span> {trade.notes}
             </p>
           </div>
@@ -175,7 +171,7 @@ const Dashboard = ({ onClose }) => {
     <div className="space-y-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-white font-semibold text-lg">Connected Accounts</h3>
-        <Button className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-xl">
+        <Button className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-xl hover:shadow-[0_0_20px_rgba(112,219,62,0.4)] transition-all duration-300">
           <Plus className="w-4 h-4 mr-2" /> Add Account
         </Button>
       </div>
@@ -183,26 +179,26 @@ const Dashboard = ({ onClose }) => {
       {fullDashboardData.accounts.map((account) => (
         <div
           key={account.id}
-          className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)] hover:border-[rgb(0,212,255)]/50 transition-all"
+          className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] hover:border-[#70DB3E]/50 hover:shadow-[0_0_20px_rgba(112,219,62,0.1)] transition-all duration-300 cursor-pointer group"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                account.connected ? 'bg-[rgb(0,212,255)]/20' : 'bg-[rgb(63,63,63)]'
+                account.connected ? 'bg-[#70DB3E]/20' : 'bg-[#222222]'
               }`}>
-                <Wallet className={`w-6 h-6 ${account.connected ? 'text-[rgb(0,212,255)]' : 'text-[rgb(161,161,170)]'}`} />
+                <Wallet className={`w-6 h-6 ${account.connected ? 'text-[#70DB3E]' : 'text-gray-500'}`} />
               </div>
               <div>
-                <p className="text-white font-medium">{account.name}</p>
-                <p className="text-[rgb(161,161,170)] text-sm">{account.broker}</p>
+                <p className="text-white font-medium group-hover:text-[#70DB3E] transition-colors">{account.name}</p>
+                <p className="text-gray-500 text-sm">{account.broker}</p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-white font-bold text-lg">${account.balance.toLocaleString()}</p>
               <span className={`text-xs px-2 py-1 rounded-full ${
                 account.connected
-                  ? 'bg-[rgb(0,212,255)]/20 text-[rgb(0,212,255)]'
-                  : 'bg-[rgb(63,63,63)] text-[rgb(161,161,170)]'
+                  ? 'bg-[#70DB3E]/20 text-[#70DB3E]'
+                  : 'bg-[#222222] text-gray-500'
               }`}>
                 {account.connected ? 'Connected' : 'Disconnected'}
               </span>
@@ -220,14 +216,14 @@ const Dashboard = ({ onClose }) => {
       {fullDashboardData.copyTraders.map((trader) => (
         <div
           key={trader.id}
-          className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)] hover:border-[rgb(0,212,255)]/50 transition-all"
+          className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] hover:border-[#70DB3E]/50 hover:shadow-[0_0_20px_rgba(112,219,62,0.1)] transition-all duration-300"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] p-0.5">
-                  <div className="w-full h-full rounded-full bg-[rgb(26,28,30)] flex items-center justify-center">
-                    <Copy className="w-5 h-5 text-[rgb(0,212,255)]" />
+                <div className="w-12 h-12 rounded-full bg-[#70DB3E]/20 p-0.5">
+                  <div className="w-full h-full rounded-full bg-[#111111] flex items-center justify-center">
+                    <Copy className="w-5 h-5 text-[#70DB3E]" />
                   </div>
                 </div>
                 {trader.id === 1 && (
@@ -236,17 +232,17 @@ const Dashboard = ({ onClose }) => {
               </div>
               <div>
                 <p className="text-white font-medium">{trader.name}</p>
-                <p className="text-[rgb(161,161,170)] text-sm">{trader.followers} followers</p>
+                <p className="text-gray-500 text-sm">{trader.followers} followers</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[rgb(0,212,255)] font-bold">+{trader.profit}%</p>
-              <p className="text-[rgb(161,161,170)] text-xs">{trader.winRate}% win rate</p>
+              <p className="text-[#70DB3E] font-bold">+{trader.profit}%</p>
+              <p className="text-gray-500 text-xs">{trader.winRate}% win rate</p>
             </div>
           </div>
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-[rgb(63,63,63)]">
-            <span className="text-[rgb(161,161,170)] text-sm">{trader.copyCost}</span>
-            <Button size="sm" className="bg-[rgb(0,212,255)] text-[rgb(17,17,19)] hover:bg-[rgb(0,190,230)] rounded-lg">
+          <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#222222]">
+            <span className="text-gray-500 text-sm">{trader.copyCost}</span>
+            <Button size="sm" className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-lg hover:shadow-[0_0_15px_rgba(112,219,62,0.4)] transition-all duration-300">
               Copy Trades
             </Button>
           </div>
@@ -257,11 +253,11 @@ const Dashboard = ({ onClose }) => {
 
   const renderCompetitionView = () => (
     <div className="space-y-4">
-      <div className="bg-gradient-to-r from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 rounded-2xl p-6 border border-[rgb(0,212,255)]/30 mb-6">
+      <div className="bg-[#70DB3E]/10 rounded-2xl p-6 border border-[#70DB3E]/30 mb-6">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-white font-bold text-xl mb-2">January Trading Competition</h3>
-            <p className="text-[rgb(161,161,170)]">Compete for $10,000 in prizes!</p>
+            <p className="text-gray-400">Compete for $10,000 in prizes!</p>
           </div>
           <Trophy className="w-12 h-12 text-yellow-400" />
         </div>
@@ -269,11 +265,11 @@ const Dashboard = ({ onClose }) => {
       
       <h3 className="text-white font-semibold text-lg mb-4">Leaderboard</h3>
       
-      {fullDashboardData.leaderboard.map((trader, index) => (
+      {fullDashboardData.leaderboard.map((trader) => (
         <div
           key={trader.rank}
-          className={`bg-[rgb(38,40,42)] rounded-2xl p-4 border transition-all ${
-            trader.rank <= 3 ? 'border-yellow-500/30' : 'border-[rgb(63,63,63)]'
+          className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 cursor-pointer hover:-translate-y-1 ${
+            trader.rank <= 3 ? 'border-yellow-500/30 hover:border-yellow-500/50' : 'border-[#222222] hover:border-[#70DB3E]/50'
           }`}
         >
           <div className="flex items-center justify-between">
@@ -282,7 +278,7 @@ const Dashboard = ({ onClose }) => {
                 trader.rank === 1 ? 'bg-yellow-500 text-black' :
                 trader.rank === 2 ? 'bg-gray-300 text-black' :
                 trader.rank === 3 ? 'bg-amber-600 text-white' :
-                'bg-[rgb(63,63,63)] text-white'
+                'bg-[#222222] text-white'
               }`}>
                 {trader.rank}
               </div>
@@ -293,11 +289,11 @@ const Dashboard = ({ onClose }) => {
               />
               <div>
                 <p className="text-white font-medium">{trader.name}</p>
-                <p className="text-[rgb(161,161,170)] text-sm">{trader.winRate}% win rate</p>
+                <p className="text-gray-500 text-sm">{trader.winRate}% win rate</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[rgb(0,212,255)] font-bold">+${trader.profit.toLocaleString()}</p>
+              <p className="text-[#70DB3E] font-bold">+${trader.profit.toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -309,7 +305,7 @@ const Dashboard = ({ onClose }) => {
     <div className="space-y-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-white font-semibold text-lg">Community Forum</h3>
-        <Button className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-xl">
+        <Button className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-xl hover:shadow-[0_0_20px_rgba(112,219,62,0.4)] transition-all duration-300">
           <Plus className="w-4 h-4 mr-2" /> New Post
         </Button>
       </div>
@@ -317,12 +313,12 @@ const Dashboard = ({ onClose }) => {
       {fullDashboardData.communityPosts.map((post) => (
         <div
           key={post.id}
-          className={`bg-[rgb(38,40,42)] rounded-2xl p-4 border transition-all ${
-            post.isPinned ? 'border-[rgb(0,212,255)]/50' : 'border-[rgb(63,63,63)]'
+          className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 cursor-pointer ${
+            post.isPinned ? 'border-[#70DB3E]/50' : 'border-[#222222] hover:border-[#70DB3E]/30'
           }`}
         >
           {post.isPinned && (
-            <div className="flex items-center gap-2 text-[rgb(0,212,255)] text-xs mb-3">
+            <div className="flex items-center gap-2 text-[#70DB3E] text-xs mb-3">
               <Star className="w-3 h-3" /> Pinned Post
             </div>
           )}
@@ -335,14 +331,14 @@ const Dashboard = ({ onClose }) => {
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
                 <p className="text-white font-medium">{post.author}</p>
-                <span className="text-[rgb(161,161,170)] text-xs">{post.time}</span>
+                <span className="text-gray-600 text-xs">{post.time}</span>
               </div>
-              <p className="text-[rgb(218,218,218)] mb-3">{post.content}</p>
+              <p className="text-gray-300 mb-3">{post.content}</p>
               <div className="flex items-center gap-4">
-                <button className="flex items-center gap-1 text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors">
+                <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
                   <Heart className="w-4 h-4" /> {post.likes}
                 </button>
-                <button className="flex items-center gap-1 text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors">
+                <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
                   <MessageSquare className="w-4 h-4" /> {post.comments}
                 </button>
               </div>
@@ -352,15 +348,15 @@ const Dashboard = ({ onClose }) => {
       ))}
       
       {/* Quick Chat */}
-      <div className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)] mt-6">
+      <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] mt-6">
         <h4 className="text-white font-medium mb-3">Quick Chat</h4>
         <div className="flex gap-2">
           <input
             type="text"
             placeholder="Say something to the community..."
-            className="flex-1 bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-xl px-4 py-2 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)]"
+            className="flex-1 bg-[#111111] border border-[#222222] rounded-xl px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E]"
           />
-          <Button className="bg-[rgb(0,212,255)] text-[rgb(17,17,19)] rounded-xl">
+          <Button className="bg-[#70DB3E] text-black rounded-xl hover:bg-[#5BC236]">
             <Send className="w-4 h-4" />
           </Button>
         </div>
@@ -371,35 +367,35 @@ const Dashboard = ({ onClose }) => {
   const renderAffiliateView = () => (
     <div className="space-y-6">
       {/* Affiliate Stats */}
-      <div className="bg-gradient-to-r from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 rounded-2xl p-6 border border-[rgb(0,212,255)]/30">
+      <div className="bg-[#70DB3E]/10 rounded-2xl p-6 border border-[#70DB3E]/30">
         <h3 className="text-white font-bold text-xl mb-4">Your Affiliate Dashboard</h3>
         <div className="grid grid-cols-3 gap-4">
-          <div className="text-center">
-            <p className="text-3xl font-bold text-[rgb(0,212,255)]">{fullDashboardData.user.referrals}</p>
-            <p className="text-[rgb(161,161,170)] text-sm">Referrals</p>
+          <div className="text-center cursor-pointer hover:scale-105 transition-transform">
+            <p className="text-3xl font-bold text-[#70DB3E]">{fullDashboardData.user.referrals}</p>
+            <p className="text-gray-400 text-sm">Referrals</p>
           </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-[rgb(186,85,211)]">{fullDashboardData.user.affiliateDiscount}</p>
-            <p className="text-[rgb(161,161,170)] text-sm">Your Discount</p>
+          <div className="text-center cursor-pointer hover:scale-105 transition-transform">
+            <p className="text-3xl font-bold text-[#70DB3E]">{fullDashboardData.user.affiliateDiscount}</p>
+            <p className="text-gray-400 text-sm">Your Discount</p>
           </div>
-          <div className="text-center">
+          <div className="text-center cursor-pointer hover:scale-105 transition-transform">
             <p className="text-3xl font-bold text-white">2</p>
-            <p className="text-[rgb(161,161,170)] text-sm">More for 50%</p>
+            <p className="text-gray-400 text-sm">More for 50%</p>
           </div>
         </div>
       </div>
       
       {/* Referral Link */}
-      <div className="bg-[rgb(38,40,42)] rounded-2xl p-4 border border-[rgb(63,63,63)]">
+      <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222]">
         <h4 className="text-white font-medium mb-3">Your Referral Link</h4>
         <div className="flex gap-2">
           <input
             type="text"
             value="https://qtm.com/ref/john123"
             readOnly
-            className="flex-1 bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-xl px-4 py-2 text-[rgb(161,161,170)]"
+            className="flex-1 bg-[#111111] border border-[#222222] rounded-xl px-4 py-2 text-gray-400"
           />
-          <Button className="bg-[rgb(0,212,255)] text-[rgb(17,17,19)] rounded-xl">
+          <Button className="bg-[#70DB3E] text-black rounded-xl hover:bg-[#5BC236] hover:shadow-[0_0_15px_rgba(112,219,62,0.4)] transition-all duration-300">
             Copy
           </Button>
         </div>
@@ -415,26 +411,26 @@ const Dashboard = ({ onClose }) => {
         ].map((tier, index) => (
           <div
             key={index}
-            className={`bg-[rgb(38,40,42)] rounded-2xl p-4 border transition-all ${
-              tier.unlocked ? 'border-[rgb(0,212,255)]/50' : 'border-[rgb(63,63,63)]'
+            className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 cursor-pointer hover:-translate-y-1 ${
+              tier.unlocked ? 'border-[#70DB3E]/50 hover:shadow-[0_0_20px_rgba(112,219,62,0.1)]' : 'border-[#222222]'
             }`}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  tier.unlocked ? 'bg-[rgb(0,212,255)]/20' : 'bg-[rgb(63,63,63)]'
+                  tier.unlocked ? 'bg-[#70DB3E]/20' : 'bg-[#222222]'
                 }`}>
-                  <Gift className={`w-5 h-5 ${tier.unlocked ? 'text-[rgb(0,212,255)]' : 'text-[rgb(161,161,170)]'}`} />
+                  <Gift className={`w-5 h-5 ${tier.unlocked ? 'text-[#70DB3E]' : 'text-gray-500'}`} />
                 </div>
                 <div>
                   <p className="text-white font-medium">{tier.reward}</p>
-                  <p className="text-[rgb(161,161,170)] text-sm">{tier.referrals} referral{tier.referrals > 1 ? 's' : ''}</p>
+                  <p className="text-gray-500 text-sm">{tier.referrals} referral{tier.referrals > 1 ? 's' : ''}</p>
                 </div>
               </div>
               <span className={`text-xs px-3 py-1 rounded-full ${
                 tier.unlocked
-                  ? 'bg-[rgb(0,212,255)]/20 text-[rgb(0,212,255)]'
-                  : 'bg-[rgb(63,63,63)] text-[rgb(161,161,170)]'
+                  ? 'bg-[#70DB3E]/20 text-[#70DB3E]'
+                  : 'bg-[#222222] text-gray-500'
               }`}>
                 {tier.unlocked ? 'Unlocked' : 'Locked'}
               </span>
@@ -475,14 +471,14 @@ const Dashboard = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[rgb(17,17,19)] overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-[#0a0a0a] overflow-hidden">
       <div className="flex h-full">
         {/* Sidebar */}
-        <div className="w-64 bg-[rgb(26,28,30)] border-r border-[rgb(63,63,63)] flex flex-col">
+        <div className="w-64 bg-[#111111] border-r border-[#1a1a1a] flex flex-col">
           {/* Logo */}
-          <div className="p-6 border-b border-[rgb(63,63,63)]">
+          <div className="p-6 border-b border-[#1a1a1a]">
             <div className="flex items-center gap-3">
-              <div className="text-xl font-bold bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
+              <div className="text-xl font-bold text-[#70DB3E]">
                 QTM Dashboard
               </div>
             </div>
@@ -494,10 +490,10 @@ const Dashboard = ({ onClose }) => {
               <button
                 key={item.id}
                 onClick={() => setActiveView(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                   activeView === item.id
-                    ? 'bg-gradient-to-r from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 text-white border border-[rgb(0,212,255)]/30'
-                    : 'text-[rgb(161,161,170)] hover:text-white hover:bg-[rgb(38,40,42)]'
+                    ? 'bg-[#70DB3E]/10 text-[#70DB3E] border border-[#70DB3E]/30 shadow-[0_0_15px_rgba(112,219,62,0.1)]'
+                    : 'text-gray-400 hover:text-white hover:bg-[#1a1a1a]'
                 }`}
               >
                 <item.icon className="w-5 h-5" />
@@ -507,11 +503,11 @@ const Dashboard = ({ onClose }) => {
           </nav>
           
           {/* Close Button */}
-          <div className="p-4 border-t border-[rgb(63,63,63)]">
+          <div className="p-4 border-t border-[#1a1a1a]">
             <Button
               onClick={onClose}
               variant="outline"
-              className="w-full border-[rgb(63,63,63)] text-[rgb(161,161,170)] hover:text-white rounded-xl"
+              className="w-full border-[#222222] text-gray-400 hover:text-white hover:border-[#70DB3E]/50 rounded-xl transition-all duration-300"
             >
               Exit Demo
             </Button>
@@ -521,25 +517,25 @@ const Dashboard = ({ onClose }) => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Top Bar */}
-          <div className="h-16 bg-[rgb(26,28,30)] border-b border-[rgb(63,63,63)] flex items-center justify-between px-6">
+          <div className="h-16 bg-[#111111] border-b border-[#1a1a1a] flex items-center justify-between px-6">
             <div className="flex items-center gap-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[rgb(161,161,170)]" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="pl-10 pr-4 py-2 bg-[rgb(38,40,42)] border border-[rgb(63,63,63)] rounded-xl text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] w-64"
+                  className="pl-10 pr-4 py-2 bg-[#1a1a1a] border border-[#222222] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] w-64 transition-colors"
                 />
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="p-2 text-[rgb(161,161,170)] hover:text-white transition-colors">
+              <button className="p-2 text-gray-400 hover:text-[#70DB3E] transition-colors">
                 <Bell className="w-5 h-5" />
               </button>
-              <button className="p-2 text-[rgb(161,161,170)] hover:text-white transition-colors">
+              <button className="p-2 text-gray-400 hover:text-[#70DB3E] transition-colors">
                 <Settings className="w-5 h-5" />
               </button>
-              <div className="flex items-center gap-3 pl-4 border-l border-[rgb(63,63,63)]">
+              <div className="flex items-center gap-3 pl-4 border-l border-[#1a1a1a]">
                 <img
                   src={fullDashboardData.user.avatar}
                   alt="User"

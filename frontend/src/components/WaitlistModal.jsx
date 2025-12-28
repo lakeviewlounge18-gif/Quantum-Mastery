@@ -39,14 +39,14 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-[rgb(26,28,30)] border-[rgb(63,63,63)] text-white max-w-md sm:rounded-2xl">
+      <DialogContent className="bg-[#111111] border-[#1a1a1a] text-white max-w-md sm:rounded-2xl">
         {!isSuccess ? (
           <>
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold text-white">
                 Join the Waiting List
               </DialogTitle>
-              <DialogDescription className="text-[rgb(161,161,170)]">
+              <DialogDescription className="text-gray-400">
                 Be the first to know when Quantum Trading Mastery launches on February 1st, 2026.
               </DialogDescription>
             </DialogHeader>
@@ -54,7 +54,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             <form onSubmit={handleSubmit} className="space-y-5 mt-4">
               {/* Name Input */}
               <div>
-                <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Full Name
                 </label>
                 <input
@@ -62,14 +62,14 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
+                  className="w-full bg-[#1a1a1a] border-2 border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] transition-colors"
                   placeholder="Enter your name"
                 />
               </div>
 
               {/* Email Input */}
               <div>
-                <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email Address
                 </label>
                 <input
@@ -77,20 +77,20 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
+                  className="w-full bg-[#1a1a1a] border-2 border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
 
               {/* Experience Select */}
               <div>
-                <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Trading Experience
                 </label>
                 <select
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[rgb(0,212,255)] transition-colors appearance-none cursor-pointer"
+                  className="w-full bg-[#1a1a1a] border-2 border-[#222222] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#70DB3E] transition-colors appearance-none cursor-pointer"
                 >
                   <option value="beginner">Complete Beginner</option>
                   <option value="some">Some Experience</option>
@@ -101,20 +101,20 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
               {/* Referral Code Input */}
               <div>
-                <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Referral Code (Optional)
                 </label>
                 <input
                   type="text"
                   value={formData.referralCode}
                   onChange={(e) => setFormData({ ...formData, referralCode: e.target.value })}
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
+                  className="w-full bg-[#1a1a1a] border-2 border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] transition-colors"
                   placeholder="Enter referral code"
                 />
               </div>
 
               {/* Benefits */}
-              <div className="bg-[rgb(38,40,42)] rounded-xl p-4 space-y-2">
+              <div className="bg-[#1a1a1a] rounded-xl p-4 space-y-2 border border-[#222222]">
                 <p className="text-sm font-medium text-white mb-3">What you'll get:</p>
                 {[
                   { icon: Gift, text: 'Early bird 25% discount' },
@@ -123,8 +123,8 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   { icon: Check, text: 'Priority enrollment access' },
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <benefit.icon className="w-4 h-4 text-[rgb(0,212,255)]" />
-                    <span className="text-sm text-[rgb(161,161,170)]">{benefit.text}</span>
+                    <benefit.icon className="w-4 h-4 text-[#70DB3E]" />
+                    <span className="text-sm text-gray-400">{benefit.text}</span>
                   </div>
                 ))}
               </div>
@@ -133,7 +133,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white hover:opacity-90 font-semibold py-6 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] disabled:opacity-50"
+                className="w-full bg-[#70DB3E] text-black hover:bg-[#5BC236] font-bold py-6 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(112,219,62,0.4)] disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>
@@ -148,18 +148,18 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 )}
               </Button>
 
-              <p className="text-xs text-[rgb(161,161,170)] text-center">
+              <p className="text-xs text-gray-500 text-center">
                 By joining, you agree to receive updates about Quantum Trading Mastery.
               </p>
             </form>
           </>
         ) : (
           <div className="py-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 flex items-center justify-center mx-auto mb-6">
-              <Check className="w-8 h-8 text-[rgb(0,212,255)]" />
+            <div className="w-16 h-16 rounded-full bg-[#70DB3E]/20 flex items-center justify-center mx-auto mb-6">
+              <Check className="w-8 h-8 text-[#70DB3E]" />
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">You're on the list!</h3>
-            <p className="text-[rgb(161,161,170)]">
+            <p className="text-gray-400">
               Check your email for a confirmation and your unique referral link.
             </p>
           </div>
