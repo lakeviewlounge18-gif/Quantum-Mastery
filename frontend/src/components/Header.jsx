@@ -19,6 +19,7 @@ const Header = ({ onJoinWaitlist }) => {
     { label: 'Features', href: '#features' },
     { label: 'Dashboard', href: '#dashboard' },
     { label: 'Program', href: '#program' },
+    { label: 'Prices', href: '#packages' },
     { label: 'Mentor', href: '#mentor' },
     { label: 'Affiliates', href: '#affiliates' },
     { label: 'FAQ', href: '#faq' },
