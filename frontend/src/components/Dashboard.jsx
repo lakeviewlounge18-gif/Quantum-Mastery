@@ -26,7 +26,14 @@ import {
   CheckCircle,
   Sprout,
   ChevronRight,
-  Clock
+  Clock,
+  Image,
+  Video,
+  Hash,
+  Medal,
+  Target,
+  ArrowRight,
+  Briefcase
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
@@ -35,6 +42,9 @@ import { fullDashboardData, calendarJournalData, courseData } from '../data/mock
 const Dashboard = ({ onClose }) => {
   const [activeView, setActiveView] = useState('dashboard');
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [accountType, setAccountType] = useState('live');
+  const [communityTab, setCommunityTab] = useState('forum');
+  const [selectedTopic, setSelectedTopic] = useState('All');
 
   const sidebarItems = [
     { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
