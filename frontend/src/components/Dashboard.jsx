@@ -45,6 +45,7 @@ const Dashboard = ({ onClose }) => {
   const [accountType, setAccountType] = useState('live');
   const [communityTab, setCommunityTab] = useState('forum');
   const [selectedTopic, setSelectedTopic] = useState('All');
+  const [pnlViewType, setPnlViewType] = useState('hourly');
 
   const sidebarItems = [
     { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
