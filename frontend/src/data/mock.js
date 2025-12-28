@@ -464,12 +464,58 @@ export const fullDashboardData = {
     { id: 3, pair: "XAU/USD", type: "BUY", entry: 2045.50, exit: 2068.30, profit: 890, date: "2025-01-14", notes: "Safe haven play" },
     { id: 4, pair: "BTC/USD", type: "BUY", entry: 42500, exit: 42150, profit: -123, date: "2025-01-14", notes: "Stop hit early" }
   ],
-  leaderboard: [
-    { rank: 1, name: "TradingKing99", profit: 45230, winRate: 94, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" },
-    { rank: 2, name: "ForexQueen", profit: 38900, winRate: 91, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" },
-    { rank: 3, name: "CryptoMaster", profit: 34500, winRate: 89, avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" },
-    { rank: 4, name: "GoldTrader", profit: 28900, winRate: 88, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" },
-    { rank: 5, name: "SwingPro", profit: 25600, winRate: 86, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" }
+  leaderboard: {
+    live: [
+      { rank: 1, name: "TradingKing99", profit: 45230, winRate: 94, country: "AU", countryFlag: "🇦🇺", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" },
+      { rank: 2, name: "ForexQueen", profit: 38900, winRate: 91, country: "US", countryFlag: "🇺🇸", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" },
+      { rank: 3, name: "CryptoMaster", profit: 34500, winRate: 89, country: "UK", countryFlag: "🇬🇧", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" },
+      { rank: 4, name: "GoldTrader", profit: 28900, winRate: 88, country: "DE", countryFlag: "🇩🇪", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" },
+      { rank: 5, name: "SwingPro", profit: 25600, winRate: 86, country: "CA", countryFlag: "🇨🇦", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" },
+      { rank: 6, name: "AlphaTrader", profit: 22100, winRate: 84, country: "JP", countryFlag: "🇯🇵", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face" },
+      { rank: 7, name: "TrendRider", profit: 19800, winRate: 82, country: "SG", countryFlag: "🇸🇬", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=50&h=50&fit=crop&crop=face" }
+    ],
+    demo: [
+      { rank: 1, name: "DemoKing", profit: 125000, winRate: 96, country: "AU", countryFlag: "🇦🇺", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face" },
+      { rank: 2, name: "PracticeQueen", profit: 98500, winRate: 92, country: "NZ", countryFlag: "🇳🇿", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop&crop=face" },
+      { rank: 3, name: "SimTrader", profit: 87200, winRate: 90, country: "IN", countryFlag: "🇮🇳", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=50&h=50&fit=crop&crop=face" },
+      { rank: 4, name: "VirtualPro", profit: 72500, winRate: 88, country: "BR", countryFlag: "🇧🇷", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" },
+      { rank: 5, name: "TestMaster", profit: 65800, winRate: 85, country: "MX", countryFlag: "🇲🇽", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" },
+      { rank: 6, name: "PaperTrader", profit: 58200, winRate: 83, country: "FR", countryFlag: "🇫🇷", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" },
+      { rank: 7, name: "SimPro", profit: 51000, winRate: 81, country: "IT", countryFlag: "🇮🇹", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" }
+    ]
+  },
+  competitions: [
+    {
+      id: 1,
+      title: "December 2024 Challenge",
+      status: "past",
+      prize: "$5,000",
+      participants: 234,
+      winner: "TradingKing99",
+      winnerProfit: "+45.2%",
+      startDate: "2024-12-01",
+      endDate: "2024-12-31"
+    },
+    {
+      id: 2,
+      title: "January 2025 Trading Battle",
+      status: "current",
+      prize: "$10,000",
+      participants: 312,
+      registered: true,
+      startDate: "2025-01-01",
+      endDate: "2025-01-31",
+      daysLeft: 6
+    },
+    {
+      id: 3,
+      title: "February 2025 Grand Prix",
+      status: "upcoming",
+      prize: "$15,000",
+      startDate: "2025-02-01",
+      endDate: "2025-02-28",
+      registrationOpen: true
+    }
   ],
   communityPosts: [
     {
@@ -479,7 +525,9 @@ export const fullDashboardData = {
       content: "Just closed a perfect EUR/USD trade using the Quantum method! 📈 +2.5% today",
       likes: 45,
       comments: 12,
-      time: "2 hours ago"
+      time: "2 hours ago",
+      topic: "Analysis",
+      hasAttachment: false
     },
     {
       id: 2,
@@ -488,7 +536,11 @@ export const fullDashboardData = {
       content: "Analysis: Gold looking bullish on the 4H timeframe. Key level at 2050. Who's watching?",
       likes: 32,
       comments: 8,
-      time: "4 hours ago"
+      time: "4 hours ago",
+      topic: "Analysis",
+      hasAttachment: true,
+      attachmentType: "image",
+      attachmentUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400"
     },
     {
       id: 3,
@@ -498,9 +550,29 @@ export const fullDashboardData = {
       likes: 156,
       comments: 43,
       time: "6 hours ago",
-      isPinned: true
+      isPinned: true,
+      topic: "Announcement",
+      hasAttachment: false
+    },
+    {
+      id: 4,
+      author: "Maria L.",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face",
+      content: "Check out my analysis video on EUR/GBP setup. Strong support zone forming at 0.8450.",
+      likes: 67,
+      comments: 23,
+      time: "8 hours ago",
+      topic: "Education",
+      hasAttachment: true,
+      attachmentType: "video"
     }
   ],
+  chatMessages: [
+    { id: 1, author: "Mike T.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face", message: "Anyone watching gold right now?", time: "2 min ago" },
+    { id: 2, author: "Sarah M.", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face", message: "Yes! Looking for a breakout above 2065", time: "1 min ago" },
+    { id: 3, author: "Khan Hazara", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=50&h=50&fit=crop&crop=face", message: "Good call Sarah. Wait for confirmation.", time: "just now" }
+  ],
+  forumTopics: ["Analysis", "Discussion", "Education", "Announcement", "Strategy", "Results"],
   copyTraders: [
     { id: 1, name: "Khan Hazara", profit: 892, winRate: 94, followers: 1250, copyCost: "Free with course" },
     { id: 2, name: "ProTrader Mike", profit: 67, winRate: 88, followers: 430, copyCost: "$49/mo" },
