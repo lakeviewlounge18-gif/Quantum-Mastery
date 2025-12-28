@@ -5,6 +5,7 @@ import CalendarJournalSection from './components/CalendarJournalSection';
 import FastTrackSection from './components/FastTrackSection';
 import AdvantagesSection from './components/AdvantagesSection';
 import MentorSection from './components/MentorSection';
+import PackagesSection from './components/PackagesSection';
 import SuccessStoriesSection from './components/SuccessStoriesSection';
 import AffiliateSection from './components/AffiliateSection';
 import SpotsCTASection from './components/SpotsCTASection';
