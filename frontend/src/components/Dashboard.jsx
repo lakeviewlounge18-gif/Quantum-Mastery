@@ -360,25 +360,44 @@ const Dashboard = ({ onClose }) => {
     
     return (
       <div className="space-y-6">
-        {/* Top Metrics Bar */}
-        <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222]">
+        {/* User Profile Card - Matching Reference Design */}
+        <div className="bg-gradient-to-r from-[#70DB3E]/10 to-[#1a1a1a] rounded-2xl p-6 border border-[#70DB3E]/40">
           <div className="flex items-center justify-between">
+            {/* Left Side - User Info */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face"
+                  alt="Khan Hazara"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-[#70DB3E] shadow-[0_0_15px_rgba(112,219,62,0.3)]"
+                />
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-xl">Khan Hazara</h3>
+                <div className="flex items-center gap-3 mt-1">
+                  <span className="flex items-center gap-1.5 text-sm">
+                    <Medal className="w-4 h-4 text-[#70DB3E]" />
+                    <span className="text-gray-400">Rank</span>
+                    <span className="text-[#70DB3E] font-semibold">#1</span>
+                  </span>
+                  <span className="text-gray-500 text-sm">Member since 2024-01-15</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Side - Metrics */}
             <div className="flex items-center gap-8">
-              <div>
-                <span className="text-gray-500 text-xs">Trades</span>
-                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.totalTrades.toLocaleString()}</p>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#70DB3E]">${calendarJournalData.monthMetrics.profits.toLocaleString()}</p>
+                <p className="text-gray-500 text-xs mt-1">Total Profit</p>
               </div>
-              <div>
-                <span className="text-gray-500 text-xs">Wins</span>
-                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.wins.toLocaleString()}</p>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-white">{calendarJournalData.monthMetrics.percent}%</p>
+                <p className="text-gray-500 text-xs mt-1">Win Rate</p>
               </div>
-              <div>
-                <span className="text-gray-500 text-xs">Profits</span>
-                <p className="text-[#3B82F6] font-bold text-lg">${calendarJournalData.monthMetrics.profits.toLocaleString()}</p>
-              </div>
-              <div>
-                <span className="text-gray-500 text-xs">Percent</span>
-                <p className="text-[#3B82F6] font-bold text-lg">{calendarJournalData.monthMetrics.percent}%</p>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-white">{calendarJournalData.monthMetrics.totalTrades.toLocaleString()}</p>
+                <p className="text-gray-500 text-xs mt-1">Total Trades</p>
               </div>
             </div>
           </div>
@@ -389,9 +408,9 @@ const Dashboard = ({ onClose }) => {
           <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 p-1">&lt;</Button>
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10 p-1">&lt;</Button>
                 <h3 className="text-white font-semibold text-lg">January 2025</h3>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 p-1">&gt;</Button>
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10 p-1">&gt;</Button>
               </div>
             </div>
             
@@ -404,7 +423,7 @@ const Dashboard = ({ onClose }) => {
 
             {/* Calendar Grid */}
             <div className="space-y-1">
-              {/* Week rows - simplified for demo */}
+              {/* Week rows */}
               {[0, 1, 2].map((weekIndex) => (
                 <div key={weekIndex} className="grid grid-cols-8 gap-1">
                   {calendarJournalData.sampleDays.slice(weekIndex * 7, (weekIndex + 1) * 7).map((day, dayIndex) => (
@@ -412,9 +431,9 @@ const Dashboard = ({ onClose }) => {
                       key={dayIndex}
                       className={`rounded-lg p-2 min-h-[70px] cursor-pointer transition-all duration-300 hover:scale-105 ${
                         day.profit > 10000
-                          ? 'bg-[#3B82F6]/30 border border-[#3B82F6]/50'
+                          ? 'bg-[#70DB3E]/30 border border-[#70DB3E]/50'
                           : day.profit > 0
-                          ? 'bg-[#3B82F6]/10 border border-[#3B82F6]/20'
+                          ? 'bg-[#70DB3E]/10 border border-[#70DB3E]/20'
                           : day.profit < 0
                           ? 'bg-red-500/10 border border-red-500/20'
                           : 'bg-[#111111] border border-[#222222]'
@@ -423,10 +442,10 @@ const Dashboard = ({ onClose }) => {
                       <span className="text-gray-400 text-xs">{day.date}</span>
                       {day.trades > 0 && (
                         <div className="mt-1">
-                          <p className={`text-xs font-bold ${day.profit > 0 ? 'text-[#3B82F6]' : 'text-red-500'}`}>
+                          <p className={`text-xs font-bold ${day.profit > 0 ? 'text-[#70DB3E]' : 'text-red-500'}`}>
                             ${day.profit > 1000 ? (day.profit / 1000).toFixed(0) + 'K' : day.profit.toLocaleString()}
                           </p>
-                          <p className={`text-[10px] ${day.profit > 0 ? 'text-[#3B82F6]/70' : 'text-red-500/70'}`}>
+                          <p className={`text-[10px] ${day.profit > 0 ? 'text-[#70DB3E]/70' : 'text-red-500/70'}`}>
                             {day.percent > 0 ? '+' : ''}{day.percent}%
                           </p>
                         </div>
@@ -434,10 +453,10 @@ const Dashboard = ({ onClose }) => {
                     </div>
                   ))}
                   {/* Weekly Total */}
-                  <div className="rounded-lg p-2 min-h-[70px] bg-[#3B82F6]/5 border border-[#3B82F6]/20">
+                  <div className="rounded-lg p-2 min-h-[70px] bg-[#70DB3E]/5 border border-[#70DB3E]/20">
                     <span className="text-gray-500 text-xs">•</span>
                     <div className="mt-1">
-                      <p className="text-xs font-bold text-[#3B82F6]">
+                      <p className="text-xs font-bold text-[#70DB3E]">
                         ${(calendarJournalData.sampleDays.slice(weekIndex * 7, (weekIndex + 1) * 7).reduce((sum, d) => sum + d.profit, 0) / 1000).toFixed(0)}K
                       </p>
                     </div>
@@ -453,7 +472,7 @@ const Dashboard = ({ onClose }) => {
             <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-[#222222]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-white font-semibold">Net Daily P&L</h3>
-                <DollarSign className="w-5 h-5 text-[#3B82F6]" />
+                <DollarSign className="w-5 h-5 text-[#70DB3E]" />
               </div>
               
               {/* Y-axis labels and chart */}
@@ -468,7 +487,7 @@ const Dashboard = ({ onClose }) => {
                   {calendarJournalData.dailyPnL.map((day, index) => (
                     <div key={index} className="flex-1 flex flex-col items-center justify-end">
                       <div
-                        className="w-full bg-[#3B82F6] rounded-t-sm transition-all duration-300 hover:bg-[#60A5FA]"
+                        className="w-full bg-[#70DB3E] rounded-t-sm transition-all duration-300 hover:bg-[#5BC236]"
                         style={{ height: `${(day.value / maxDailyPnL) * 100}%` }}
                       />
                     </div>
@@ -494,7 +513,7 @@ const Dashboard = ({ onClose }) => {
                     onClick={() => setPnlViewType('hourly')}
                     className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
                       pnlViewType === 'hourly'
-                        ? 'bg-[#3B82F6]/20 text-[#3B82F6] border-b-2 border-[#3B82F6]'
+                        ? 'bg-[#70DB3E]/20 text-[#70DB3E] border-b-2 border-[#70DB3E]'
                         : 'text-gray-400 hover:text-white'
                     }`}
                   >
@@ -504,14 +523,14 @@ const Dashboard = ({ onClose }) => {
                     onClick={() => setPnlViewType('daily')}
                     className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
                       pnlViewType === 'daily'
-                        ? 'bg-[#3B82F6]/20 text-[#3B82F6] border-b-2 border-[#3B82F6]'
+                        ? 'bg-[#70DB3E]/20 text-[#70DB3E] border-b-2 border-[#70DB3E]'
                         : 'text-gray-400 hover:text-white'
                     }`}
                   >
                     Daily
                   </button>
                 </div>
-                <select className="bg-[#222222] text-[#3B82F6] text-sm rounded-lg px-3 py-1 border-none focus:outline-none">
+                <select className="bg-[#222222] text-[#70DB3E] text-sm rounded-lg px-3 py-1 border-none focus:outline-none">
                   <option>Wins vs Losses</option>
                   <option>Profit Only</option>
                   <option>Loss Only</option>
@@ -534,7 +553,7 @@ const Dashboard = ({ onClose }) => {
                     <div key={index} className="flex-1 flex flex-col items-center justify-end h-full">
                       {hour.value >= 0 ? (
                         <div
-                          className="w-full bg-[#3B82F6] rounded-t-sm transition-all duration-300 hover:bg-[#60A5FA]"
+                          className="w-full bg-[#70DB3E] rounded-t-sm transition-all duration-300 hover:bg-[#5BC236]"
                           style={{ height: `${(hour.value / maxHourlyPnL) * 60}%`, marginBottom: '20%' }}
                         />
                       ) : (
@@ -565,7 +584,7 @@ const Dashboard = ({ onClose }) => {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-semibold">Yearly Performance</h3>
             <div className="flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-[#3B82F6]" />
+              <DollarSign className="w-5 h-5 text-[#70DB3E]" />
             </div>
           </div>
           
@@ -577,7 +596,7 @@ const Dashboard = ({ onClose }) => {
                   {calendarJournalData.yearlyPerformance.months.map((m) => (
                     <td key={m.month} className="text-gray-400 text-sm text-center py-2 px-3">{m.month}</td>
                   ))}
-                  <td className="text-[#3B82F6] text-sm text-center py-2 px-3 font-semibold">YTD</td>
+                  <td className="text-[#70DB3E] text-sm text-center py-2 px-3 font-semibold">YTD</td>
                 </tr>
               </thead>
               <tbody>
@@ -586,8 +605,8 @@ const Dashboard = ({ onClose }) => {
                   {calendarJournalData.yearlyPerformance.months.map((m, index) => (
                     <td key={index} className="text-center py-2 px-3">
                       {m.profit !== null ? (
-                        <div className="bg-[#3B82F6]/10 rounded-lg p-2 border border-[#3B82F6]/30">
-                          <p className="text-[#3B82F6] text-xs font-bold">+{(m.profit / 1000000).toFixed(1)}M</p>
+                        <div className="bg-[#70DB3E]/10 rounded-lg p-2 border border-[#70DB3E]/30">
+                          <p className="text-[#70DB3E] text-xs font-bold">+{(m.profit / 1000000).toFixed(1)}M</p>
                           <p className="text-gray-500 text-[10px]">{m.trades} trades</p>
                         </div>
                       ) : (
@@ -596,8 +615,8 @@ const Dashboard = ({ onClose }) => {
                     </td>
                   ))}
                   <td className="text-center py-2 px-3">
-                    <div className="bg-[#3B82F6]/20 rounded-lg p-2 border border-[#3B82F6]/50">
-                      <p className="text-[#3B82F6] text-xs font-bold">+{(calendarJournalData.yearlyPerformance.ytd.profit / 1000000).toFixed(1)}M</p>
+                    <div className="bg-[#70DB3E]/20 rounded-lg p-2 border border-[#70DB3E]/50">
+                      <p className="text-[#70DB3E] text-xs font-bold">+{(calendarJournalData.yearlyPerformance.ytd.profit / 1000000).toFixed(1)}M</p>
                       <p className="text-gray-500 text-[10px]">{calendarJournalData.yearlyPerformance.ytd.trades} trades</p>
                     </div>
                   </td>
