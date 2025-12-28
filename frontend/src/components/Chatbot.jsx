@@ -51,21 +51,21 @@ const Chatbot = () => {
       {isOpen && (
         <div className="absolute bottom-20 right-0 w-[350px] sm:w-[400px] bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[rgb(218,255,1)] to-[rgb(166,190,21)] p-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[rgb(17,17,19)] flex items-center justify-center">
-                <Bot className="w-6 h-6 text-[rgb(218,255,1)]" />
+                <Bot className="w-6 h-6 text-[rgb(0,212,255)]" />
               </div>
               <div>
-                <p className="font-semibold text-[rgb(17,17,19)]">QEM Assistant</p>
-                <p className="text-xs text-[rgb(17,17,19)]/70">Online • Ready to help</p>
+                <p className="font-semibold text-white">QTM Assistant</p>
+                <p className="text-xs text-white/70">Online • Ready to help</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-full bg-[rgb(17,17,19)]/20 flex items-center justify-center hover:bg-[rgb(17,17,19)]/30 transition-colors"
+              className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
             >
-              <X className="w-4 h-4 text-[rgb(17,17,19)]" />
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
 
@@ -79,21 +79,21 @@ const Chatbot = () => {
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.type === 'bot'
-                      ? 'bg-[rgb(218,255,1)]/20'
-                      : 'bg-[rgb(63,63,63)]'
+                      ? 'bg-[rgb(0,212,255)]/20'
+                      : 'bg-[rgb(186,85,211)]/20'
                   }`}
                 >
                   {message.type === 'bot' ? (
-                    <Bot className="w-4 h-4 text-[rgb(218,255,1)]" />
+                    <Bot className="w-4 h-4 text-[rgb(0,212,255)]" />
                   ) : (
-                    <User className="w-4 h-4 text-white" />
+                    <User className="w-4 h-4 text-[rgb(186,85,211)]" />
                   )}
                 </div>
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl ${
                     message.type === 'bot'
                       ? 'bg-[rgb(38,40,42)] text-[rgb(218,218,218)] rounded-bl-none'
-                      : 'bg-[rgb(218,255,1)] text-[rgb(17,17,19)] rounded-br-none'
+                      : 'bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-br-none'
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
@@ -110,7 +110,7 @@ const Chatbot = () => {
                 <button
                   key={index}
                   onClick={() => handleSend(suggestion)}
-                  className="px-3 py-1 text-xs bg-[rgb(38,40,42)] text-[rgb(161,161,170)] rounded-full hover:bg-[rgb(218,255,1)]/20 hover:text-[rgb(218,255,1)] transition-colors"
+                  className="px-3 py-1 text-xs bg-[rgb(38,40,42)] text-[rgb(161,161,170)] rounded-full hover:bg-[rgb(0,212,255)]/20 hover:text-[rgb(0,212,255)] transition-colors"
                 >
                   {suggestion}
                 </button>
@@ -127,11 +127,11 @@ const Chatbot = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Type your message..."
-                className="flex-1 bg-[rgb(38,40,42)] border border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(218,255,1)] transition-colors"
+                className="flex-1 bg-[rgb(38,40,42)] border border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
               />
               <Button
                 onClick={() => handleSend()}
-                className="bg-[rgb(218,255,1)] text-[rgb(17,17,19)] hover:bg-[rgb(166,190,21)] rounded-xl px-4"
+                className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-xl px-4"
               >
                 <Send className="w-5 h-5" />
               </Button>
@@ -146,13 +146,13 @@ const Chatbot = () => {
         className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
           isOpen
             ? 'bg-[rgb(63,63,63)] rotate-0'
-            : 'bg-[rgb(218,255,1)] hover:bg-[rgb(166,190,21)] hover:shadow-[0_0_30px_rgba(218,255,1,0.5)]'
+            : 'bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]'
         }`}
       >
         {isOpen ? (
           <X className="w-6 h-6 text-white" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-[rgb(17,17,19)]" />
+          <MessageCircle className="w-6 h-6 text-white" />
         )}
       </button>
 

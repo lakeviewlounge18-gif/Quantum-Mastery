@@ -10,9 +10,9 @@ const FastTrackSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(218,255,1)]/10 border border-[rgb(218,255,1)]/30 mb-6">
-            <Zap className="w-4 h-4 text-[rgb(218,255,1)]" />
-            <span className="text-[rgb(218,255,1)] text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(0,212,255)]/10 border border-[rgb(0,212,255)]/30 mb-6">
+            <Zap className="w-4 h-4 text-[rgb(0,212,255)]" />
+            <span className="text-[rgb(0,212,255)] text-sm font-medium">
               {fastTrackData.subtitle}
             </span>
           </div>
@@ -27,7 +27,7 @@ const FastTrackSection = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[rgb(218,255,1)] via-[rgb(218,255,1)]/50 to-transparent lg:-translate-x-1/2" />
+          <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[rgb(0,212,255)] via-[rgb(186,85,211)] to-transparent lg:-translate-x-1/2" />
 
           <div className="space-y-8">
             {fastTrackData.days.map((day, index) => (
@@ -44,13 +44,13 @@ const FastTrackSection = () => {
                   }`}
                 >
                   <div
-                    className={`inline-block bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-6 transition-all hover:border-[rgb(218,255,1)] hover:shadow-[0_0_30px_rgba(218,255,1,0.15)] group`}
+                    className={`inline-block bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl p-6 transition-all hover:border-[rgb(0,212,255)] hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] group`}
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-[rgb(218,255,1)] text-sm font-bold">
+                      <span className="text-[rgb(0,212,255)] text-sm font-bold">
                         DAY {day.day}
                       </span>
-                      <div className="h-px flex-1 bg-[rgb(63,63,63)] group-hover:bg-[rgb(218,255,1)]/30 transition-colors" />
+                      <div className="h-px flex-1 bg-[rgb(63,63,63)] group-hover:bg-gradient-to-r group-hover:from-[rgb(0,212,255)]/30 group-hover:to-[rgb(186,85,211)]/30 transition-colors" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">{day.title}</h3>
                     <p className="text-[rgb(161,161,170)]">{day.description}</p>
@@ -58,7 +58,7 @@ const FastTrackSection = () => {
                 </div>
 
                 {/* Day Number Node */}
-                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-8 h-8 rounded-full bg-[rgb(218,255,1)] flex items-center justify-center text-[rgb(17,17,19)] font-bold text-sm shadow-[0_0_20px_rgba(218,255,1,0.5)]">
+                <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] flex items-center justify-center text-white font-bold text-sm shadow-[0_0_20px_rgba(0,212,255,0.5)]">
                   {day.day}
                 </div>
 
@@ -70,8 +70,8 @@ const FastTrackSection = () => {
 
           {/* Completion Badge */}
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-4 bg-[rgb(26,28,30)] rounded-2xl border border-[rgb(218,255,1)] shadow-[0_0_30px_rgba(218,255,1,0.2)]">
-              <CheckCircle className="w-6 h-6 text-[rgb(218,255,1)]" />
+            <div className="inline-flex items-center gap-3 px-6 py-4 bg-[rgb(26,28,30)] rounded-2xl border border-[rgb(0,212,255)] shadow-[0_0_30px_rgba(0,212,255,0.2)]">
+              <CheckCircle className="w-6 h-6 text-[rgb(0,212,255)]" />
               <span className="text-white font-semibold">
                 Become a Confident Trader in Just 7 Days
               </span>

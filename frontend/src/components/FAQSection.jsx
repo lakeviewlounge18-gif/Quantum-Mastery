@@ -30,9 +30,9 @@ const FAQSection = () => {
             <AccordionItem
               key={faq.id}
               value={`faq-${faq.id}`}
-              className="bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl overflow-hidden data-[state=open]:border-[rgb(218,255,1)]/50 transition-colors"
+              className="bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl overflow-hidden data-[state=open]:border-[rgb(0,212,255)]/50 transition-colors"
             >
-              <AccordionTrigger className="px-6 py-5 text-left text-white hover:text-[rgb(218,255,1)] hover:no-underline transition-colors [&[data-state=open]>svg]:text-[rgb(218,255,1)]">
+              <AccordionTrigger className="px-6 py-5 text-left text-white hover:text-[rgb(0,212,255)] hover:no-underline transition-colors [&[data-state=open]>svg]:text-[rgb(0,212,255)]">
                 <span className="text-lg font-medium pr-4">{faq.question}</span>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-5 text-[rgb(218,218,218)] leading-relaxed">
@@ -49,7 +49,7 @@ const FAQSection = () => {
           </p>
           <a
             href="#chatbot"
-            className="inline-flex items-center gap-2 text-[rgb(218,255,1)] font-medium hover:underline"
+            className="inline-flex items-center gap-2 text-[rgb(0,212,255)] font-medium hover:underline"
           >
             Chat with our assistant
             <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
