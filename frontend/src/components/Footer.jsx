@@ -40,23 +40,20 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[rgb(26,28,30)] border-t border-[rgb(63,63,63)] pt-20 pb-8">
+    <footer className="bg-[#0f0f0f] border-t border-[#1a1a1a] pt-20 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
           {/* Brand Column */}
           <div className="col-span-2">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 group">
               <img
                 src={heroData.logo}
                 alt="QTM"
-                className="w-10 h-10 object-contain"
+                className="w-14 h-14 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(112,219,62,0.5)]"
               />
-              <div className="text-2xl font-bold bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
-                QTM
-              </div>
             </div>
-            <p className="text-[rgb(161,161,170)] mb-6 max-w-xs">
+            <p className="text-gray-500 mb-6 max-w-xs">
               Quantum Trading Mastery - Transform your trading journey with expert mentorship and proven strategies.
             </p>
             {/* Social Links */}
@@ -66,7 +63,7 @@ const Footer = () => {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center text-[rgb(161,161,170)] hover:bg-gradient-to-r hover:from-[rgb(0,212,255)] hover:to-[rgb(186,85,211)] hover:text-white transition-all hover:-translate-y-1"
+                  className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center text-gray-500 hover:bg-[#70DB3E] hover:text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(112,219,62,0.4)]"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -82,7 +79,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
+                    className="text-gray-500 hover:text-[#70DB3E] transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -99,7 +96,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
+                    className="text-gray-500 hover:text-[#70DB3E] transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -116,7 +113,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
+                    className="text-gray-500 hover:text-[#70DB3E] transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -133,7 +130,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
+                    className="text-gray-500 hover:text-[#70DB3E] transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -144,42 +141,42 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="grid md:grid-cols-3 gap-6 py-8 border-t border-[rgb(63,63,63)] mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <Mail className="w-5 h-5 text-[rgb(0,212,255)]" />
+        <div className="grid md:grid-cols-3 gap-6 py-8 border-t border-[#1a1a1a] mb-8">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#70DB3E]/20 transition-all duration-300">
+              <Mail className="w-5 h-5 text-[#70DB3E]" />
             </div>
             <div>
-              <p className="text-[rgb(161,161,170)] text-xs">Email us</p>
-              <p className="text-white text-sm">support@quantumtrading.com</p>
+              <p className="text-gray-600 text-xs">Email us</p>
+              <p className="text-white text-sm group-hover:text-[#70DB3E] transition-colors duration-300">support@quantumtrading.com</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <Phone className="w-5 h-5 text-[rgb(0,212,255)]" />
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#70DB3E]/20 transition-all duration-300">
+              <Phone className="w-5 h-5 text-[#70DB3E]" />
             </div>
             <div>
-              <p className="text-[rgb(161,161,170)] text-xs">Call us</p>
-              <p className="text-white text-sm">+1 (555) 123-4567</p>
+              <p className="text-gray-600 text-xs">Call us</p>
+              <p className="text-white text-sm group-hover:text-[#70DB3E] transition-colors duration-300">+1 (555) 123-4567</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-[rgb(0,212,255)]" />
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#70DB3E]/20 transition-all duration-300">
+              <MapPin className="w-5 h-5 text-[#70DB3E]" />
             </div>
             <div>
-              <p className="text-[rgb(161,161,170)] text-xs">Location</p>
-              <p className="text-white text-sm">Dubai, UAE</p>
+              <p className="text-gray-600 text-xs">Location</p>
+              <p className="text-white text-sm group-hover:text-[#70DB3E] transition-colors duration-300">Dubai, UAE</p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgb(63,63,63)]">
-          <p className="text-[rgb(161,161,170)] text-sm mb-4 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#1a1a1a]">
+          <p className="text-gray-600 text-sm mb-4 md:mb-0">
             © {currentYear} Quantum Trading Mastery. All rights reserved.
           </p>
-          <p className="text-[rgb(161,161,170)] text-sm">
+          <p className="text-gray-600 text-sm">
             Trading involves risk. Past performance does not guarantee future results.
           </p>
         </div>

@@ -49,23 +49,23 @@ const Chatbot = () => {
     <div id="chatbot" className="fixed bottom-6 right-6 z-50">
       {/* Chat Window */}
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-[350px] sm:w-[400px] bg-[rgb(26,28,30)] border border-[rgb(63,63,63)] rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+        <div className="absolute bottom-20 right-0 w-[350px] sm:w-[400px] bg-[#111111] border border-[#1a1a1a] rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] p-4 flex items-center justify-between">
+          <div className="bg-[#70DB3E] p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[rgb(17,17,19)] flex items-center justify-center">
-                <Bot className="w-6 h-6 text-[rgb(0,212,255)]" />
+              <div className="w-10 h-10 rounded-full bg-black/20 flex items-center justify-center">
+                <Bot className="w-6 h-6 text-black" />
               </div>
               <div>
-                <p className="font-semibold text-white">QTM Assistant</p>
-                <p className="text-xs text-white/70">Online • Ready to help</p>
+                <p className="font-semibold text-black">QTM Assistant</p>
+                <p className="text-xs text-black/70">Online • Ready to help</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+              className="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center hover:bg-black/30 transition-colors"
             >
-              <X className="w-4 h-4 text-white" />
+              <X className="w-4 h-4 text-black" />
             </button>
           </div>
 
@@ -79,21 +79,21 @@ const Chatbot = () => {
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.type === 'bot'
-                      ? 'bg-[rgb(0,212,255)]/20'
-                      : 'bg-[rgb(186,85,211)]/20'
+                      ? 'bg-[#70DB3E]/20'
+                      : 'bg-[#1a1a1a]'
                   }`}
                 >
                   {message.type === 'bot' ? (
-                    <Bot className="w-4 h-4 text-[rgb(0,212,255)]" />
+                    <Bot className="w-4 h-4 text-[#70DB3E]" />
                   ) : (
-                    <User className="w-4 h-4 text-[rgb(186,85,211)]" />
+                    <User className="w-4 h-4 text-gray-400" />
                   )}
                 </div>
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl ${
                     message.type === 'bot'
-                      ? 'bg-[rgb(38,40,42)] text-[rgb(218,218,218)] rounded-bl-none'
-                      : 'bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-br-none'
+                      ? 'bg-[#1a1a1a] text-gray-300 rounded-bl-none'
+                      : 'bg-[#70DB3E] text-black rounded-br-none'
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
@@ -110,7 +110,7 @@ const Chatbot = () => {
                 <button
                   key={index}
                   onClick={() => handleSend(suggestion)}
-                  className="px-3 py-1 text-xs bg-[rgb(38,40,42)] text-[rgb(161,161,170)] rounded-full hover:bg-[rgb(0,212,255)]/20 hover:text-[rgb(0,212,255)] transition-colors"
+                  className="px-3 py-1 text-xs bg-[#1a1a1a] text-gray-400 rounded-full hover:bg-[#70DB3E]/20 hover:text-[#70DB3E] transition-all duration-300"
                 >
                   {suggestion}
                 </button>
@@ -119,7 +119,7 @@ const Chatbot = () => {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-[rgb(63,63,63)]">
+          <div className="p-4 border-t border-[#1a1a1a]">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -127,11 +127,11 @@ const Chatbot = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Type your message..."
-                className="flex-1 bg-[rgb(38,40,42)] border border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
+                className="flex-1 bg-[#1a1a1a] border border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] transition-colors"
               />
               <Button
                 onClick={() => handleSend()}
-                className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white rounded-xl px-4"
+                className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-xl px-4"
               >
                 <Send className="w-5 h-5" />
               </Button>
@@ -145,14 +145,14 @@ const Chatbot = () => {
         onClick={() => setIsOpen(!isOpen)}
         className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
           isOpen
-            ? 'bg-[rgb(63,63,63)] rotate-0'
-            : 'bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]'
+            ? 'bg-[#1a1a1a] rotate-0'
+            : 'bg-[#70DB3E] hover:bg-[#5BC236] hover:shadow-[0_0_40px_rgba(112,219,62,0.6)] hover:-translate-y-1'
         }`}
       >
         {isOpen ? (
           <X className="w-6 h-6 text-white" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-white" />
+          <MessageCircle className="w-6 h-6 text-black" />
         )}
       </button>
 
