@@ -1,52 +1,75 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import React, { useState } from 'react';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import DashboardPreview from './components/DashboardPreview';
+import FastTrackSection from './components/FastTrackSection';
+import AdvantagesSection from './components/AdvantagesSection';
+import MentorSection from './components/MentorSection';
+import SuccessStoriesSection from './components/SuccessStoriesSection';
+import SpotsCTASection from './components/SpotsCTASection';
+import IncludedSection from './components/IncludedSection';
+import FAQSection from './components/FAQSection';
+import Chatbot from './components/Chatbot';
+import Footer from './components/Footer';
+import WaitlistModal from './components/WaitlistModal';
+import { Toaster, toast } from 'sonner';
+import './App.css';
 
 function App() {
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+
+  const handleJoinWaitlist = () => {
+    setIsWaitlistOpen(true);
+  };
+
+  const handleDemoView = () => {
+    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
+    toast.success('Scrolling to Dashboard Preview');
+  };
+
+  const handleMeetMentor = () => {
+    document.getElementById('mentor')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="App bg-[rgb(17,17,19)] min-h-screen">
+      <Toaster 
+        position="top-center" 
+        toastOptions={{
+          style: {
+            background: 'rgb(26,28,30)',
+            border: '1px solid rgb(63,63,63)',
+            color: 'white',
+          },
+        }}
+      />
+      
+      <Header onJoinWaitlist={handleJoinWaitlist} />
+      
+      <main>
+        <HeroSection 
+          onJoinWaitlist={handleJoinWaitlist} 
+          onDemoView={handleDemoView}
+          onMeetMentor={handleMeetMentor}
+        />
+        <DashboardPreview />
+        <FastTrackSection />
+        <AdvantagesSection />
+        <MentorSection />
+        <SuccessStoriesSection />
+        <SpotsCTASection onJoinWaitlist={handleJoinWaitlist} />
+        <IncludedSection />
+        <FAQSection />
+      </main>
+      
+      <Footer />
+      
+      <Chatbot />
+      
+      <WaitlistModal 
+        isOpen={isWaitlistOpen} 
+        onClose={() => setIsWaitlistOpen(false)} 
+      />
     </div>
   );
 }
