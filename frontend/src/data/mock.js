@@ -1,7 +1,7 @@
 // Mock data for Quantum Trading Mastery Landing Page
 
 export const heroData = {
-  logo: "https://customer-assets.emergentagent.com/job_32c9c8ca-d247-45bc-aefd-cafb35418c6d/artifacts/cdvlbz29_1227-Cover.jpg",
+  logo: "https://customer-assets.emergentagent.com/job_edge-mastery/artifacts/f3v0nedu_The%20Quantom%20Logo.png",
   brandName: "Quantum Trading Mastery",
   tagline: "Coming Soon",
   launchDate: "2026-02-01T00:00:00",
