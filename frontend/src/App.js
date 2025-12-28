@@ -65,6 +65,7 @@ function App() {
         <FastTrackSection />
         <AdvantagesSection />
         <MentorSection />
+        <PackagesSection onSelectPackage={handleJoinWaitlist} />
         <SuccessStoriesSection />
         <AffiliateSection onJoinWaitlist={handleJoinWaitlist} />
         <SpotsCTASection onJoinWaitlist={handleJoinWaitlist} />
