@@ -1,8 +1,9 @@
 import React from 'react';
-import { Quote, Star } from 'lucide-react';
+import { Quote, Star, ArrowRight, Users } from 'lucide-react';
+import { Button } from './ui/button';
 import { mentorData } from '../data/mock';
 
-const MentorSection = () => {
+const MentorSection = ({ onApplyMentorship }) => {
   return (
     <section id="mentor" className="py-24 relative">
       <div className="absolute inset-0 bg-[#0a0a0a]" />
@@ -18,10 +19,10 @@ const MentorSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Mentor Image */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-[#70DB3E]/20 rounded-3xl blur-[100px] group-hover:blur-[120px] transition-all duration-500" />
+            <div className="absolute inset-0 bg-[#70DB3E]/15 rounded-3xl blur-[80px] group-hover:blur-[100px] transition-all duration-500" />
             <div className="relative bg-[#111111] rounded-3xl p-2 border border-[#1a1a1a] group-hover:border-[#70DB3E]/30 transition-all duration-500">
               <img
                 src={mentorData.image}
@@ -44,6 +45,7 @@ const MentorSection = () => {
 
           {/* Mentor Info */}
           <div>
+            {/* Star Rating */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#70DB3E]/10 border border-[#70DB3E]/30 mb-6">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -51,6 +53,7 @@ const MentorSection = () => {
               <span className="text-gray-400 text-sm ml-2">Top Rated Mentor</span>
             </div>
 
+            {/* Name & Title */}
             <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">
               {mentorData.name}
             </h3>
@@ -58,16 +61,41 @@ const MentorSection = () => {
               {mentorData.title}
             </p>
 
+            {/* Bio */}
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
               {mentorData.bio}
             </p>
 
             {/* Quote */}
-            <div className="relative bg-[#111111] rounded-2xl p-6 border border-[#1a1a1a] hover:border-[#70DB3E]/30 transition-all duration-500 group cursor-pointer">
+            <div className="relative bg-[#111111] rounded-2xl p-6 border border-[#1a1a1a] hover:border-[#70DB3E]/30 transition-all duration-500 group cursor-pointer mb-8">
               <Quote className="absolute -top-3 left-6 w-8 h-8 text-[#70DB3E] fill-[#70DB3E]/20" />
               <p className="text-white italic text-lg pl-4 group-hover:text-[#70DB3E]/90 transition-colors duration-300">
                 "{mentorData.quote}"
               </p>
+            </div>
+
+            {/* Mentorship Card */}
+            <div className="bg-[#111111] rounded-2xl p-6 border border-[#1a1a1a] hover:border-[#70DB3E]/50 hover:shadow-[0_0_40px_rgba(112,219,62,0.15)] transition-all duration-500 group">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[#70DB3E]/10 flex items-center justify-center group-hover:bg-[#70DB3E]/20 transition-colors">
+                  <Users className="w-6 h-6 text-[#70DB3E]" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-white font-bold text-xl mb-1 group-hover:text-[#70DB3E] transition-colors">
+                    {mentorData.mentorshipCard.headline}
+                  </h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {mentorData.mentorshipCard.subheadline}
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={onApplyMentorship}
+                className="w-full bg-[#70DB3E] text-black hover:bg-[#5BC236] font-bold py-4 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(112,219,62,0.5)] hover:-translate-y-1 group/btn"
+              >
+                {mentorData.mentorshipCard.cta}
+                <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
         </div>

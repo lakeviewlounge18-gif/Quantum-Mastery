@@ -4,13 +4,14 @@ export const heroData = {
   logo: "https://customer-assets.emergentagent.com/job_edge-mastery/artifacts/f3v0nedu_The%20Quantom%20Logo.png",
   brandName: "Quantum Trading Mastery",
   tagline: "Coming Soon",
+  announcement: "Australia's First Trading Community",
   launchDate: "2026-02-01T00:00:00",
   motto: "Master the Markets, Transform Your Future",
   subtitle: "From beginner to confident trader in just 7 days with Khan Hazara, The Quantum Trader",
   ctaButtons: [
     { id: 1, label: "Join the Waiting List", type: "primary" },
     { id: 2, label: "Dashboard Demo", type: "secondary" },
-    { id: 3, label: "Meet Your Mentor", type: "ghost" }
+    { id: 3, label: "Learn about 1:1 Mentorship", type: "ghost" }
   ]
 };
 
@@ -51,14 +52,19 @@ export const mentorData = {
   name: "Khan Hazara",
   title: "The Quantum Trader",
   image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
-  bio: "With over 5 years of professional trading experience and a proven 92% win rate, Khan Hazara has transformed hundreds of beginners into confident, profitable traders. His unique Quantum Edge methodology combines technical analysis with psychological mastery.",
+  bio: "Khan Hazara known as The Quantum Trader for a reason. With over 5+ years of professional trading experience and a proven 92% win rate, Khan Hazara is committed to transform lives of other traders who are facing challenges with their strategies, mindset and risk management skills. His unique Quantum Trading Mastery Technique combines technical analysis with psychological Mastery.",
   stats: [
     { label: "Years Trading", value: "5+" },
     { label: "Students Mentored", value: "500+" },
     { label: "Win Rate", value: "92%" },
     { label: "Profit Factor", value: "3.2" }
   ],
-  quote: "Trading isn't about predicting the future—it's about managing risk and capitalizing on probability."
+  quote: "Trading isn't about predicting the future, it's about managing risk and capitalizing on probability and mastering the psychology.",
+  mentorshipCard: {
+    headline: "1:1 Mentorship Available",
+    subheadline: "This service is exclusive for intermediate, advanced traders, business owners and entrepreneurs seeking personalized guidance. Khan offers exclusive one on one mentorship session in his personal trading room.",
+    cta: "Apply for Mentorship"
+  }
 };
 
 export const successStoriesData = {
@@ -108,27 +114,106 @@ export const affiliateData = {
   subtitle: "Earn While You Learn",
   description: "Share Quantum Trading Mastery with your network and unlock exclusive rewards",
   tiers: [
-    {
-      id: 1,
-      referrals: 1,
-      reward: "10% Commission",
-      description: "Earn on every referral"
-    },
-    {
-      id: 2,
-      referrals: 3,
-      reward: "Free Ebook",
-      description: "Trading Psychology Guide"
-    },
-    {
-      id: 3,
-      referrals: 5,
-      reward: "50% Discount",
-      description: "On your course enrollment"
-    }
+    { id: 1, referrals: 1, reward: "10% Commission", description: "Earn on every referral" },
+    { id: 2, referrals: 3, reward: "Free Ebook", description: "Trading Psychology Guide" },
+    { id: 3, referrals: 5, reward: "50% Discount", description: "On your course enrollment" }
   ],
   preLaunchBonus: "Pre-Launch Special: Refer 5 friends before Feb 1st, 2026 and get 50% OFF + Free Ebook!",
   postLaunchNote: "After first 100 registrations, affiliate discount becomes 25%"
+};
+
+export const packagesData = {
+  title: "How Much Will It Cost You?",
+  subtitle: "Choose Your Trading Journey",
+  packages: [
+    {
+      id: 1,
+      name: "Starter",
+      price: "Free",
+      priceNote: "",
+      cta: "Start Free",
+      ctaIcon: "play",
+      supportingLine: "No cost. No pressure. Learn the basics and understand how professional trading really works.",
+      features: [
+        "Access to Beginner Course (10 modules)",
+        "Access to Journal (1 month free)",
+        "Access to Telegram Channel",
+        "Access to Weekly Webinar",
+        "Access to Trading Community"
+      ],
+      highlight: false,
+      badge: null
+    },
+    {
+      id: 2,
+      name: "Foundation Trader",
+      price: "$99",
+      priceNote: "/ monthly subscription",
+      cta: "Build Your Foundation",
+      ctaIcon: "layers",
+      supportingLine: "Learn market structure, risk management, and execution the right way—step by step.",
+      features: [
+        "Everything in Starter",
+        "Access to Intermediate Course (10 modules)",
+        "Journaling (3 months free)",
+        "Copy Trading (3 months free)",
+        "Weekly Webinar Access",
+        "Free E-book",
+        "Quantum Mastery Candle Chart",
+        "Lifetime Community Access",
+        "Access to Leaderboard"
+      ],
+      highlight: false,
+      badge: "Popular"
+    },
+    {
+      id: 3,
+      name: "Group Learning Program",
+      price: "$1,299",
+      priceNote: "4 weeks program",
+      cta: "Join the Community",
+      ctaIcon: "users",
+      supportingLine: "Learn live with guidance, structure, accountability, and like-minded traders on the same journey.",
+      note: "Min 7 people, Max 10 people per group",
+      features: [
+        "Everything in Foundation Trader",
+        "Access to Advanced Course (10 modules)",
+        "Private Group Mentoring Sessions x 4",
+        "Live Trading Group Session x 4",
+        "Quantum Edge Journaling (6 months free)",
+        "Quantum Edge Copy Trading (6 months free)",
+        "Access to Monthly Competition",
+        "Exclusive Invitation to Events"
+      ],
+      highlight: true,
+      badge: "Best Value"
+    },
+    {
+      id: 4,
+      name: "1:1 Mentorship",
+      price: "Custom",
+      priceNote: "7 days program",
+      cta: "Apply for 1:1 Mentorship",
+      ctaIcon: "crown",
+      supportingLine: "Work directly with me. Personal strategy, mindset coaching, and real execution feedback.",
+      features: [
+        "Complete Trading Mastery Course",
+        "1:1 Mentorship Session with Khan Hazara x 5",
+        "Access to Khan Hazara Trading Room x 5",
+        "Lifetime Community Access",
+        "VIP Telegram Group",
+        "Quantum Edge Journal (12 months free)",
+        "Quantum Edge Copier (12 months free)",
+        "Access to Competition & Win Prizes",
+        "VIP Event Access",
+        "Leadership Ranking",
+        "Invite to Global Events",
+        "Career Opportunity"
+      ],
+      highlight: false,
+      badge: "Mastery"
+    }
+  ]
 };
 
 export const includedData = {
@@ -158,12 +243,12 @@ export const faqData = {
     {
       id: 2,
       question: "How does the 1:1 mentorship work?",
-      answer: "You'll receive 3 personal video call sessions with Khan Hazara himself. These sessions are scheduled at your convenience and focus on your specific trading goals and challenges."
+      answer: "You'll receive 5 personal sessions with Khan Hazara himself in his private trading room. These sessions are scheduled at your convenience and focus on your specific trading goals and challenges."
     },
     {
       id: 3,
       question: "What is the Trade Copier?",
-      answer: "The Trade Copier automatically mirrors Khan's live trades to your account. This allows you to learn by doing while potentially profiting from expert trades. You get 2 months free access."
+      answer: "The Trade Copier automatically mirrors Khan's live trades to your account. This allows you to learn by doing while potentially profiting from expert trades."
     },
     {
       id: 4,
@@ -177,8 +262,8 @@ export const faqData = {
     },
     {
       id: 6,
-      question: "How much time do I need to commit daily?",
-      answer: "We recommend 2-3 hours daily during the 7-day intensive program. After that, you can trade and learn at your own pace with lifetime access to all materials."
+      question: "What's the difference between packages?",
+      answer: "Starter is free for beginners. Foundation Trader ($99/mo) adds intermediate content and tools. Group Learning ($1,299) includes advanced modules with live sessions. 1:1 Mentorship is our premium offering with direct access to Khan Hazara."
     }
   ]
 };
@@ -204,54 +289,14 @@ export const dashboardFeatures = {
   title: "Powerful Dashboard Features",
   subtitle: "Everything synced in real-time across all your devices",
   features: [
-    {
-      id: "metrics",
-      icon: "BarChart3",
-      title: "Dashboard Metrics",
-      description: "Real-time P&L, win rate, drawdown, and 50+ performance metrics"
-    },
-    {
-      id: "calendar",
-      icon: "Calendar",
-      title: "Calendar View",
-      description: "Visualize your trades by day, week, or month with profit heatmaps"
-    },
-    {
-      id: "journal",
-      icon: "BookOpen",
-      title: "Trade Journal",
-      description: "Log emotions, screenshots, and notes for every trade"
-    },
-    {
-      id: "accounts",
-      icon: "Wallet",
-      title: "Multi-Account Setup",
-      description: "Connect unlimited MT4/MT5 accounts from any broker"
-    },
-    {
-      id: "copier",
-      icon: "Copy",
-      title: "Copy Traders",
-      description: "Mirror top performers' trades automatically to your accounts"
-    },
-    {
-      id: "competition",
-      icon: "Trophy",
-      title: "Competition & Leaderboard",
-      description: "Compete with other traders and climb the rankings"
-    },
-    {
-      id: "community",
-      icon: "Users",
-      title: "Community Forum",
-      description: "Share analysis, discuss strategies, and chat with fellow traders"
-    },
-    {
-      id: "affiliate",
-      icon: "Gift",
-      title: "Affiliate Center",
-      description: "Track your referrals and earn rewards"
-    }
+    { id: "metrics", icon: "BarChart3", title: "Dashboard Metrics", description: "Real-time P&L, win rate, drawdown, and 50+ performance metrics" },
+    { id: "calendar", icon: "Calendar", title: "Calendar View", description: "Visualize your trades by day, week, or month with profit heatmaps" },
+    { id: "journal", icon: "BookOpen", title: "Trade Journal", description: "Log emotions, screenshots, and notes for every trade" },
+    { id: "accounts", icon: "Wallet", title: "Multi-Account Setup", description: "Connect unlimited MT4/MT5 accounts from any broker" },
+    { id: "copier", icon: "Copy", title: "Copy Traders", description: "Mirror top performers' trades automatically to your accounts" },
+    { id: "competition", icon: "Trophy", title: "Competition & Leaderboard", description: "Compete with other traders and climb the rankings" },
+    { id: "community", icon: "Users", title: "Community Forum", description: "Share analysis, discuss strategies, and chat with fellow traders" },
+    { id: "affiliate", icon: "Gift", title: "Affiliate Center", description: "Track your referrals and earn rewards" }
   ]
 };
 
@@ -294,16 +339,94 @@ export const chatbotData = {
   welcomeMessage: "Hi! I'm your Quantum Trading assistant. How can I help you today?",
   suggestions: [
     "Tell me about the course",
-    "What's included?",
+    "What packages are available?",
     "How does the affiliate work?",
     "Dashboard features"
   ],
   responses: {
-    "Tell me about the course": "Quantum Trading Mastery is a 7-day intensive trading program designed to take you from beginner to confident trader. You'll learn technical analysis, risk management, and our proprietary Quantum Edge methodology.",
-    "What's included?": "The program includes: Trading Mastery Course, 3x 1:1 Mentorship sessions with Khan Hazara, Lifetime community access, 2 months Trade Copier, Professional trading journal, Weekly live trading room access, and Competition entry.",
+    "Tell me about the course": "Quantum Trading Mastery is a comprehensive trading program with 3 levels: Beginner, Intermediate, and Advanced. Each level has 10 modules with video lessons and must be completed with a quiz before moving to the next level.",
+    "What packages are available?": "We offer 4 packages: Starter (Free), Foundation Trader ($99/mo), Group Learning ($1,299 for 4 weeks), and 1:1 Mentorship (Custom pricing for 7 days). Each offers progressively more features and direct access to Khan Hazara.",
     "How does the affiliate work?": "Refer 5 friends before launch and get 50% OFF your course + a FREE Trading Ebook! After the first 100 registrations, affiliate discount becomes 25%. You also earn 10% commission on every successful referral.",
-    "Dashboard features": "Our dashboard includes: Real-time metrics, Calendar journaling, Multi-account sync, Copy trading, Competition leaderboards, Community forum with chat and analysis sharing, and Affiliate tracking center."
+    "Dashboard features": "Our dashboard includes: Real-time metrics, Calendar journaling, Multi-account sync, Copy trading, Competition leaderboards, Community forum, Course progress tracking, and Affiliate center."
   }
+};
+
+// Course Data for Dashboard
+export const courseData = {
+  levels: [
+    {
+      id: 1,
+      name: "Beginner",
+      description: "Master the fundamentals of trading",
+      icon: "Sprout",
+      color: "#70DB3E",
+      locked: false,
+      progress: 60,
+      completedLessons: 6,
+      totalLessons: 10,
+      quizPassed: false,
+      lessons: [
+        { id: 1, title: "Introduction to Trading", duration: "15 min", completed: true, type: "video" },
+        { id: 2, title: "Understanding Markets", duration: "20 min", completed: true, type: "video" },
+        { id: 3, title: "Trading Terminology", duration: "18 min", completed: true, type: "video" },
+        { id: 4, title: "Chart Basics", duration: "25 min", completed: true, type: "video" },
+        { id: 5, title: "Candlestick Patterns", duration: "30 min", completed: true, type: "video" },
+        { id: 6, title: "Support & Resistance", duration: "22 min", completed: true, type: "video" },
+        { id: 7, title: "Trend Identification", duration: "20 min", completed: false, type: "video" },
+        { id: 8, title: "Basic Indicators", duration: "28 min", completed: false, type: "video" },
+        { id: 9, title: "Risk Introduction", duration: "18 min", completed: false, type: "video" },
+        { id: 10, title: "Your First Trade", duration: "35 min", completed: false, type: "video" }
+      ]
+    },
+    {
+      id: 2,
+      name: "Intermediate",
+      description: "Develop advanced trading strategies",
+      icon: "TrendingUp",
+      color: "#FFB800",
+      locked: true,
+      progress: 0,
+      completedLessons: 0,
+      totalLessons: 10,
+      quizPassed: false,
+      lessons: [
+        { id: 1, title: "Advanced Chart Patterns", duration: "25 min", completed: false, type: "video" },
+        { id: 2, title: "Fibonacci Trading", duration: "30 min", completed: false, type: "video" },
+        { id: 3, title: "Moving Averages Mastery", duration: "28 min", completed: false, type: "video" },
+        { id: 4, title: "RSI & MACD Strategies", duration: "32 min", completed: false, type: "video" },
+        { id: 5, title: "Volume Analysis", duration: "22 min", completed: false, type: "video" },
+        { id: 6, title: "Multiple Timeframes", duration: "26 min", completed: false, type: "video" },
+        { id: 7, title: "Entry Strategies", duration: "30 min", completed: false, type: "video" },
+        { id: 8, title: "Exit Strategies", duration: "28 min", completed: false, type: "video" },
+        { id: 9, title: "Position Sizing", duration: "24 min", completed: false, type: "video" },
+        { id: 10, title: "Building Your System", duration: "35 min", completed: false, type: "video" }
+      ]
+    },
+    {
+      id: 3,
+      name: "Advanced",
+      description: "Master professional trading techniques",
+      icon: "Crown",
+      color: "#FF6B6B",
+      locked: true,
+      progress: 0,
+      completedLessons: 0,
+      totalLessons: 10,
+      quizPassed: false,
+      lessons: [
+        { id: 1, title: "Institutional Trading", duration: "35 min", completed: false, type: "video" },
+        { id: 2, title: "Order Flow Analysis", duration: "40 min", completed: false, type: "video" },
+        { id: 3, title: "Smart Money Concepts", duration: "38 min", completed: false, type: "video" },
+        { id: 4, title: "Liquidity Trading", duration: "32 min", completed: false, type: "video" },
+        { id: 5, title: "News Trading", duration: "28 min", completed: false, type: "video" },
+        { id: 6, title: "Correlation Trading", duration: "30 min", completed: false, type: "video" },
+        { id: 7, title: "Portfolio Management", duration: "35 min", completed: false, type: "video" },
+        { id: 8, title: "Trading Psychology", duration: "40 min", completed: false, type: "video" },
+        { id: 9, title: "Automation Basics", duration: "45 min", completed: false, type: "video" },
+        { id: 10, title: "Becoming a Pro Trader", duration: "50 min", completed: false, type: "video" }
+      ]
+    }
+  ]
 };
 
 // Full Dashboard Mock Data
