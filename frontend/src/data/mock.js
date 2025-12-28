@@ -310,29 +310,97 @@ export const calendarJournalData = {
     "Weekly and monthly summaries",
     "Export reports for tax purposes"
   ],
+  // Summary metrics for the month
+  monthMetrics: {
+    totalTrades: 5278,
+    wins: 5230,
+    profits: 1938562.05,
+    percent: 731.33
+  },
+  // Enhanced calendar data with detailed daily info
   sampleDays: [
-    { date: 1, profit: 234, trades: 3 },
-    { date: 2, profit: -89, trades: 2 },
-    { date: 3, profit: 456, trades: 5 },
-    { date: 4, profit: 123, trades: 2 },
-    { date: 5, profit: -45, trades: 1 },
-    { date: 6, profit: 0, trades: 0 },
-    { date: 7, profit: 0, trades: 0 },
-    { date: 8, profit: 567, trades: 4 },
-    { date: 9, profit: 234, trades: 3 },
-    { date: 10, profit: -123, trades: 2 },
-    { date: 11, profit: 789, trades: 6 },
-    { date: 12, profit: 345, trades: 3 },
-    { date: 13, profit: 0, trades: 0 },
-    { date: 14, profit: 0, trades: 0 },
-    { date: 15, profit: 456, trades: 4 },
-    { date: 16, profit: 234, trades: 2 },
-    { date: 17, profit: -67, trades: 1 },
-    { date: 18, profit: 890, trades: 5 },
-    { date: 19, profit: 123, trades: 2 },
-    { date: 20, profit: 0, trades: 0 },
-    { date: 21, profit: 0, trades: 0 }
-  ]
+    { date: 1, profit: 0, trades: 0, percent: 0 },
+    { date: 2, profit: -89, trades: 2, percent: -1.2 },
+    { date: 3, profit: 456, trades: 5, percent: 4.5 },
+    { date: 4, profit: 123, trades: 2, percent: 2.1 },
+    { date: 5, profit: -45, trades: 1, percent: -0.8 },
+    { date: 6, profit: 0, trades: 0, percent: 0 },
+    { date: 7, profit: 0, trades: 0, percent: 0 },
+    { date: 8, profit: 567, trades: 4, percent: 5.8 },
+    { date: 9, profit: 234, trades: 3, percent: 3.2 },
+    { date: 10, profit: -123, trades: 2, percent: -1.8 },
+    { date: 11, profit: 789, trades: 6, percent: 8.9 },
+    { date: 12, profit: 345, trades: 3, percent: 4.1 },
+    { date: 13, profit: 0, trades: 0, percent: 0 },
+    { date: 14, profit: 0, trades: 0, percent: 0 },
+    { date: 15, profit: 456, trades: 4, percent: 5.2 },
+    { date: 16, profit: 234, trades: 2, percent: 2.8 },
+    { date: 17, profit: 31032, trades: 8, percent: 11.71 },
+    { date: 18, profit: 44274, trades: 12, percent: 14.98 },
+    { date: 19, profit: 113228, trades: 15, percent: 33.24 },
+    { date: 20, profit: 205237, trades: 18, percent: 45.18 },
+    { date: 21, profit: 0, trades: 0, percent: 0 }
+  ],
+  // Net Daily P&L data for chart
+  dailyPnL: [
+    { date: "Jan 18", value: 150000 },
+    { date: "Jan 19", value: 180000 },
+    { date: "Jan 20", value: 220000 },
+    { date: "Jan 21", value: 350000 },
+    { date: "Jan 22", value: 480000 },
+    { date: "Jan 23", value: 320000 },
+    { date: "Jan 24", value: 520000 },
+    { date: "Jan 25", value: 450000 },
+    { date: "Jan 26", value: 380000 },
+    { date: "Jan 27", value: 280000 },
+    { date: "Jan 28", value: 420000 }
+  ],
+  // Hourly P&L data
+  hourlyPnL: [
+    { hour: "00", value: -50 },
+    { hour: "01", value: 120 },
+    { hour: "02", value: 180 },
+    { hour: "03", value: 90 },
+    { hour: "04", value: 250 },
+    { hour: "05", value: 380 },
+    { hour: "06", value: 420 },
+    { hour: "07", value: 580 },
+    { hour: "08", value: 720 },
+    { hour: "09", value: 650 },
+    { hour: "10", value: 580 },
+    { hour: "11", value: 450 },
+    { hour: "12", value: 380 },
+    { hour: "13", value: 520 },
+    { hour: "14", value: 680 },
+    { hour: "15", value: 750 },
+    { hour: "16", value: 620 },
+    { hour: "17", value: 480 },
+    { hour: "18", value: 350 },
+    { hour: "19", value: 280 },
+    { hour: "20", value: 180 },
+    { hour: "21", value: 120 },
+    { hour: "22", value: 80 },
+    { hour: "23", value: 50 }
+  ],
+  // Yearly performance data
+  yearlyPerformance: {
+    year: 2025,
+    months: [
+      { month: "Jan", profit: 1938562, trades: 5278 },
+      { month: "Feb", profit: null, trades: null },
+      { month: "Mar", profit: null, trades: null },
+      { month: "Apr", profit: null, trades: null },
+      { month: "May", profit: null, trades: null },
+      { month: "Jun", profit: null, trades: null },
+      { month: "Jul", profit: null, trades: null },
+      { month: "Aug", profit: null, trades: null },
+      { month: "Sep", profit: null, trades: null },
+      { month: "Oct", profit: null, trades: null },
+      { month: "Nov", profit: null, trades: null },
+      { month: "Dec", profit: null, trades: null }
+    ],
+    ytd: { profit: 1938562, trades: 5278 }
+  }
 };
 
 export const chatbotData = {
