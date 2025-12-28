@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import DashboardPreview from './components/DashboardPreview';
+import CalendarJournalSection from './components/CalendarJournalSection';
 import FastTrackSection from './components/FastTrackSection';
 import AdvantagesSection from './components/AdvantagesSection';
 import MentorSection from './components/MentorSection';
 import SuccessStoriesSection from './components/SuccessStoriesSection';
+import AffiliateSection from './components/AffiliateSection';
 import SpotsCTASection from './components/SpotsCTASection';
 import IncludedSection from './components/IncludedSection';
 import FAQSection from './components/FAQSection';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
 import WaitlistModal from './components/WaitlistModal';
+import Dashboard from './components/Dashboard';
 import { Toaster, toast } from 'sonner';
 import './App.css';
 
 function App() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
   const handleJoinWaitlist = () => {
     setIsWaitlistOpen(true);
   };
 
   const handleDemoView = () => {
-    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
-    toast.success('Scrolling to Dashboard Preview');
+    setIsDashboardOpen(true);
+    toast.success('Opening Dashboard Demo');
   };
 
   const handleMeetMentor = () => {
@@ -44,6 +47,11 @@ function App() {
         }}
       />
       
+      {/* Dashboard Overlay */}
+      {isDashboardOpen && (
+        <Dashboard onClose={() => setIsDashboardOpen(false)} />
+      )}
+      
       <Header onJoinWaitlist={handleJoinWaitlist} />
       
       <main>
@@ -52,11 +60,12 @@ function App() {
           onDemoView={handleDemoView}
           onMeetMentor={handleMeetMentor}
         />
-        <DashboardPreview />
+        <CalendarJournalSection />
         <FastTrackSection />
         <AdvantagesSection />
         <MentorSection />
         <SuccessStoriesSection />
+        <AffiliateSection onJoinWaitlist={handleJoinWaitlist} />
         <SpotsCTASection onJoinWaitlist={handleJoinWaitlist} />
         <IncludedSection />
         <FAQSection />

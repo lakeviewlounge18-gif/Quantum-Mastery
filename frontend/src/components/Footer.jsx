@@ -1,5 +1,6 @@
 import React from 'react';
 import { Twitter, Instagram, Youtube, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { heroData } from '../data/mock';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -46,13 +47,17 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="text-2xl font-bold">
-                <span className="text-[rgb(218,255,1)]">Q</span>
-                <span className="text-white">EM</span>
+              <img
+                src={heroData.logo}
+                alt="QTM"
+                className="w-10 h-10 object-contain"
+              />
+              <div className="text-2xl font-bold bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
+                QTM
               </div>
             </div>
             <p className="text-[rgb(161,161,170)] mb-6 max-w-xs">
-              Quantum Edge Mastery - Transform your trading journey with expert mentorship and proven strategies.
+              Quantum Trading Mastery - Transform your trading journey with expert mentorship and proven strategies.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -61,7 +66,7 @@ const Footer = () => {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center text-[rgb(161,161,170)] hover:bg-[rgb(218,255,1)] hover:text-[rgb(17,17,19)] transition-all hover:-translate-y-1"
+                  className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center text-[rgb(161,161,170)] hover:bg-gradient-to-r hover:from-[rgb(0,212,255)] hover:to-[rgb(186,85,211)] hover:text-white transition-all hover:-translate-y-1"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -77,7 +82,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(218,255,1)] transition-colors text-sm"
+                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -94,7 +99,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(218,255,1)] transition-colors text-sm"
+                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -111,7 +116,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(218,255,1)] transition-colors text-sm"
+                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -128,7 +133,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-[rgb(161,161,170)] hover:text-[rgb(218,255,1)] transition-colors text-sm"
+                    className="text-[rgb(161,161,170)] hover:text-[rgb(0,212,255)] transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -142,16 +147,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-6 py-8 border-t border-[rgb(63,63,63)] mb-8">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <Mail className="w-5 h-5 text-[rgb(218,255,1)]" />
+              <Mail className="w-5 h-5 text-[rgb(0,212,255)]" />
             </div>
             <div>
               <p className="text-[rgb(161,161,170)] text-xs">Email us</p>
-              <p className="text-white text-sm">support@quantumedge.com</p>
+              <p className="text-white text-sm">support@quantumtrading.com</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <Phone className="w-5 h-5 text-[rgb(218,255,1)]" />
+              <Phone className="w-5 h-5 text-[rgb(0,212,255)]" />
             </div>
             <div>
               <p className="text-[rgb(161,161,170)] text-xs">Call us</p>
@@ -160,7 +165,7 @@ const Footer = () => {
           </div>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-[rgb(38,40,42)] flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-[rgb(218,255,1)]" />
+              <MapPin className="w-5 h-5 text-[rgb(0,212,255)]" />
             </div>
             <div>
               <p className="text-[rgb(161,161,170)] text-xs">Location</p>
@@ -172,7 +177,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgb(63,63,63)]">
           <p className="text-[rgb(161,161,170)] text-sm mb-4 md:mb-0">
-            © {currentYear} Quantum Edge Mastery. All rights reserved.
+            © {currentYear} Quantum Trading Mastery. All rights reserved.
           </p>
           <p className="text-[rgb(161,161,170)] text-sm">
             Trading involves risk. Past performance does not guarantee future results.

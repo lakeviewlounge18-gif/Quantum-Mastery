@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ArrowRight, Check, Loader2 } from 'lucide-react';
+import { X, ArrowRight, Check, Loader2, Gift, BookOpen, Users } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -14,6 +14,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
     name: '',
     email: '',
     experience: 'beginner',
+    referralCode: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -31,7 +32,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
     // Reset after showing success
     setTimeout(() => {
       setIsSuccess(false);
-      setFormData({ name: '', email: '', experience: 'beginner' });
+      setFormData({ name: '', email: '', experience: 'beginner', referralCode: '' });
       onClose();
     }, 3000);
   };
@@ -46,11 +47,11 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 Join the Waiting List
               </DialogTitle>
               <DialogDescription className="text-[rgb(161,161,170)]">
-                Be the first to know when Quantum Edge Mastery launches on February 1st, 2026.
+                Be the first to know when Quantum Trading Mastery launches on February 1st, 2026.
               </DialogDescription>
             </DialogHeader>
 
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+            <form onSubmit={handleSubmit} className="space-y-5 mt-4">
               {/* Name Input */}
               <div>
                 <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
@@ -61,7 +62,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(218,255,1)] transition-colors"
+                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
                   placeholder="Enter your name"
                 />
               </div>
@@ -76,7 +77,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(218,255,1)] transition-colors"
+                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -89,7 +90,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 <select
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[rgb(218,255,1)] transition-colors appearance-none cursor-pointer"
+                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[rgb(0,212,255)] transition-colors appearance-none cursor-pointer"
                 >
                   <option value="beginner">Complete Beginner</option>
                   <option value="some">Some Experience</option>
@@ -98,18 +99,32 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 </select>
               </div>
 
+              {/* Referral Code Input */}
+              <div>
+                <label className="block text-sm font-medium text-[rgb(218,218,218)] mb-2">
+                  Referral Code (Optional)
+                </label>
+                <input
+                  type="text"
+                  value={formData.referralCode}
+                  onChange={(e) => setFormData({ ...formData, referralCode: e.target.value })}
+                  className="w-full bg-[rgb(38,40,42)] border-2 border-[rgb(63,63,63)] rounded-xl px-4 py-3 text-white placeholder-[rgb(161,161,170)] focus:outline-none focus:border-[rgb(0,212,255)] transition-colors"
+                  placeholder="Enter referral code"
+                />
+              </div>
+
               {/* Benefits */}
               <div className="bg-[rgb(38,40,42)] rounded-xl p-4 space-y-2">
                 <p className="text-sm font-medium text-white mb-3">What you'll get:</p>
                 {[
-                  'Early bird 50% discount',
-                  'Exclusive pre-launch content',
-                  'Priority enrollment access',
-                  'Free trading guide',
+                  { icon: Gift, text: 'Early bird 25% discount' },
+                  { icon: Users, text: 'Refer 5 friends = 50% OFF' },
+                  { icon: BookOpen, text: 'Free Trading Ebook' },
+                  { icon: Check, text: 'Priority enrollment access' },
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[rgb(218,255,1)]" />
-                    <span className="text-sm text-[rgb(161,161,170)]">{benefit}</span>
+                    <benefit.icon className="w-4 h-4 text-[rgb(0,212,255)]" />
+                    <span className="text-sm text-[rgb(161,161,170)]">{benefit.text}</span>
                   </div>
                 ))}
               </div>
@@ -118,7 +133,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[rgb(218,255,1)] text-[rgb(17,17,19)] hover:bg-[rgb(166,190,21)] font-semibold py-6 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(218,255,1,0.4)] disabled:opacity-50"
+                className="w-full bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white hover:opacity-90 font-semibold py-6 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>
@@ -134,18 +149,18 @@ const WaitlistModal = ({ isOpen, onClose }) => {
               </Button>
 
               <p className="text-xs text-[rgb(161,161,170)] text-center">
-                By joining, you agree to receive updates about Quantum Edge Mastery.
+                By joining, you agree to receive updates about Quantum Trading Mastery.
               </p>
             </form>
           </>
         ) : (
           <div className="py-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-[rgb(218,255,1)]/20 flex items-center justify-center mx-auto mb-6">
-              <Check className="w-8 h-8 text-[rgb(218,255,1)]" />
+            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[rgb(0,212,255)]/20 to-[rgb(186,85,211)]/20 flex items-center justify-center mx-auto mb-6">
+              <Check className="w-8 h-8 text-[rgb(0,212,255)]" />
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">You're on the list!</h3>
             <p className="text-[rgb(161,161,170)]">
-              Check your email for a confirmation and your free trading guide.
+              Check your email for a confirmation and your unique referral link.
             </p>
           </div>
         )}
