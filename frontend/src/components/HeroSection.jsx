@@ -42,30 +42,30 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
             <defs>
               <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
                 <path d="M10 10 L90 10 M10 50 L50 50 L50 90" stroke="rgb(63,63,63)" strokeWidth="1" fill="none" />
-                <circle cx="10" cy="10" r="3" fill="rgb(218,255,1)" opacity="0.5" />
-                <circle cx="90" cy="10" r="3" fill="rgb(218,255,1)" opacity="0.5" />
-                <circle cx="50" cy="50" r="3" fill="rgb(218,255,1)" opacity="0.5" />
+                <circle cx="10" cy="10" r="3" fill="rgb(0,212,255)" opacity="0.5" />
+                <circle cx="90" cy="10" r="3" fill="rgb(0,212,255)" opacity="0.5" />
+                <circle cx="50" cy="50" r="3" fill="rgb(186,85,211)" opacity="0.5" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#circuit)" />
           </svg>
         </div>
-        {/* Gradient overlays */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[rgb(218,255,1)] rounded-full blur-[150px] opacity-10" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[rgb(127,74,142)] rounded-full blur-[150px] opacity-10" />
+        {/* Gradient overlays - Cyan and Magenta to match logo */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[rgb(0,212,255)] rounded-full blur-[150px] opacity-15" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[rgb(186,85,211)] rounded-full blur-[150px] opacity-15" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          {/* Logo */}
+          {/* Logo - Full Size */}
           <div className="flex justify-center mb-6">
             <div className="relative">
               <img
                 src={heroData.logo}
-                alt="Quantum Edge Mastery"
-                className="w-32 h-32 sm:w-40 sm:h-40 object-contain drop-shadow-[0_0_30px_rgba(218,255,1,0.5)]"
+                alt="Quantum Trading Mastery"
+                className="w-40 h-40 sm:w-52 sm:h-52 object-contain drop-shadow-[0_0_40px_rgba(0,212,255,0.5)]"
               />
-              <div className="absolute inset-0 bg-[rgb(218,255,1)] blur-3xl opacity-20 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] blur-3xl opacity-20 animate-pulse" />
             </div>
           </div>
 
@@ -73,9 +73,9 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-wider">
             {heroData.brandName}
           </h2>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(26,28,30)] border border-[rgb(218,255,1)]/30 mb-8">
-            <span className="w-2 h-2 bg-[rgb(218,255,1)] rounded-full animate-pulse" />
-            <span className="text-[rgb(218,255,1)] text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(26,28,30)] border border-[rgb(0,212,255)]/30 mb-8">
+            <span className="w-2 h-2 bg-[rgb(0,212,255)] rounded-full animate-pulse" />
+            <span className="text-[rgb(0,212,255)] text-sm font-medium">
               {heroData.tagline} - Launch Date: February 1st, 2026
             </span>
           </div>
@@ -84,7 +84,7 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Master the Markets,
             <br />
-            <span className="bg-gradient-to-r from-[rgb(218,255,1)] to-[rgb(166,190,21)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">
               Transform Your Future
             </span>
           </h1>
@@ -108,7 +108,7 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col items-center p-4 sm:p-6 bg-[rgb(26,28,30)] rounded-2xl border border-[rgb(63,63,63)] min-w-[70px] sm:min-w-[90px] transition-all hover:border-[rgb(218,255,1)] hover:shadow-[0_0_20px_rgba(218,255,1,0.2)]"
+                  className="flex flex-col items-center p-4 sm:p-6 bg-[rgb(26,28,30)] rounded-2xl border border-[rgb(63,63,63)] min-w-[70px] sm:min-w-[90px] transition-all hover:border-[rgb(0,212,255)] hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
                 >
                   <span className="text-2xl sm:text-4xl font-bold text-white">
                     {String(item.value).padStart(2, '0')}
@@ -125,7 +125,7 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
               onClick={onJoinWaitlist}
-              className="bg-[rgb(218,255,1)] text-[rgb(17,17,19)] hover:bg-[rgb(166,190,21)] font-semibold px-8 py-6 text-lg rounded-xl transition-all hover:shadow-[0_0_30px_rgba(218,255,1,0.4)] group"
+              className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white hover:opacity-90 font-semibold px-8 py-6 text-lg rounded-xl transition-all hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] group"
             >
               Join the Waiting List
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -133,10 +133,10 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
             <Button
               onClick={onDemoView}
               variant="outline"
-              className="border-2 border-[rgb(63,63,63)] text-white hover:border-[rgb(218,255,1)] hover:bg-[rgba(218,255,1,0.1)] px-8 py-6 text-lg rounded-xl transition-all group"
+              className="border-2 border-[rgb(0,212,255)] text-[rgb(0,212,255)] hover:bg-[rgba(0,212,255,0.1)] px-8 py-6 text-lg rounded-xl transition-all group"
             >
               <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
-              Demo View
+              Dashboard Demo
             </Button>
             <Button
               onClick={onMeetMentor}
@@ -153,7 +153,7 @@ const HeroSection = ({ onJoinWaitlist, onDemoView, onMeetMentor }) => {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-[rgb(63,63,63)] flex justify-center pt-2">
-          <div className="w-1 h-3 bg-[rgb(218,255,1)] rounded-full animate-pulse" />
+          <div className="w-1 h-3 bg-gradient-to-b from-[rgb(0,212,255)] to-[rgb(186,85,211)] rounded-full animate-pulse" />
         </div>
       </div>
     </section>

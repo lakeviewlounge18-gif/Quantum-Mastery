@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { heroData } from '../data/mock';
 
 const Header = ({ onJoinWaitlist }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,9 +17,10 @@ const Header = ({ onJoinWaitlist }) => {
 
   const navLinks = [
     { label: 'Features', href: '#features' },
+    { label: 'Dashboard', href: '#dashboard' },
     { label: 'Program', href: '#program' },
     { label: 'Mentor', href: '#mentor' },
-    { label: 'Success Stories', href: '#stories' },
+    { label: 'Affiliates', href: '#affiliates' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -34,9 +36,13 @@ const Header = ({ onJoinWaitlist }) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-3">
+            <img
+              src={heroData.logo}
+              alt="QTM"
+              className="w-10 h-10 object-contain"
+            />
             <div className="text-xl font-bold">
-              <span className="text-[rgb(218,255,1)]">Q</span>
-              <span className="text-white">EM</span>
+              <span className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] bg-clip-text text-transparent">QTM</span>
             </div>
           </div>
 
@@ -57,7 +63,7 @@ const Header = ({ onJoinWaitlist }) => {
           <div className="hidden md:block">
             <Button
               onClick={onJoinWaitlist}
-              className="bg-[rgb(218,255,1)] text-[rgb(17,17,19)] hover:bg-[rgb(166,190,21)] font-semibold px-6 py-2 rounded-xl transition-all hover:shadow-[0_0_20px_rgba(218,255,1,0.3)]"
+              className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white hover:opacity-90 font-semibold px-6 py-2 rounded-xl transition-all hover:shadow-[0_0_20px_rgba(0,212,255,0.3)]"
             >
               Join Waiting List
             </Button>
@@ -91,7 +97,7 @@ const Header = ({ onJoinWaitlist }) => {
                   onJoinWaitlist();
                   setIsMobileMenuOpen(false);
                 }}
-                className="bg-[rgb(218,255,1)] text-[rgb(17,17,19)] hover:bg-[rgb(166,190,21)] font-semibold mt-2 rounded-xl"
+                className="bg-gradient-to-r from-[rgb(0,212,255)] to-[rgb(186,85,211)] text-white hover:opacity-90 font-semibold mt-2 rounded-xl"
               >
                 Join Waiting List
               </Button>
