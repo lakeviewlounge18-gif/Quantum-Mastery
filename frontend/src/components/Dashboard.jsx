@@ -737,67 +737,235 @@ const Dashboard = ({ onClose }) => {
     );
   };
 
-  const renderCommunityView = () => (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white font-semibold text-lg">Community Forum</h3>
-        <Button className="bg-[#70DB3E] text-black hover:bg-[#5BC236] rounded-xl hover:shadow-[0_0_20px_rgba(112,219,62,0.4)] transition-all duration-300">
-          <Plus className="w-4 h-4 mr-2" /> New Post
-        </Button>
-      </div>
-      
-      {fullDashboardData.communityPosts.map((post) => (
-        <div
-          key={post.id}
-          className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 cursor-pointer ${
-            post.isPinned ? 'border-[#70DB3E]/50' : 'border-[#222222] hover:border-[#70DB3E]/30'
-          }`}
-        >
-          {post.isPinned && (
-            <div className="flex items-center gap-2 text-[#70DB3E] text-xs mb-3">
-              <Star className="w-3 h-3" /> Pinned Post
-            </div>
-          )}
-          <div className="flex items-start gap-3">
-            <img
-              src={post.avatar}
-              alt={post.author}
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <p className="text-white font-medium">{post.author}</p>
-                <span className="text-gray-600 text-xs">{post.time}</span>
+  const renderCommunityView = () => {
+    const allTopics = ['All', ...fullDashboardData.forumTopics];
+    const filteredPosts = selectedTopic === 'All' 
+      ? fullDashboardData.communityPosts 
+      : fullDashboardData.communityPosts.filter(p => p.topic === selectedTopic);
+
+    return (
+      <div className="space-y-6">
+        {/* Personal Stats Header */}
+        <div className="bg-gradient-to-r from-[#70DB3E]/10 to-[#1a1a1a] rounded-2xl p-6 border border-[#70DB3E]/30">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <img
+                src={fullDashboardData.user.avatar}
+                alt={fullDashboardData.user.name}
+                className="w-16 h-16 rounded-full object-cover border-2 border-[#70DB3E]"
+              />
+              <div>
+                <h3 className="text-white font-bold text-xl">{fullDashboardData.user.name}</h3>
+                <div className="flex items-center gap-3 mt-1">
+                  <span className="flex items-center gap-1 text-[#70DB3E] text-sm">
+                    <Medal className="w-4 h-4" /> Rank #{fullDashboardData.user.rank}
+                  </span>
+                  <span className="text-gray-500 text-sm">Member since {fullDashboardData.user.memberSince}</span>
+                </div>
               </div>
-              <p className="text-gray-300 mb-3">{post.content}</p>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
-                  <Heart className="w-4 h-4" /> {post.likes}
-                </button>
-                <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
-                  <MessageSquare className="w-4 h-4" /> {post.comments}
-                </button>
+            </div>
+            <div className="flex gap-6">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#70DB3E]">${fullDashboardData.metrics.totalProfit.toLocaleString()}</p>
+                <p className="text-gray-500 text-xs">Total Profit</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-white">{fullDashboardData.metrics.winRate}%</p>
+                <p className="text-gray-500 text-xs">Win Rate</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-white">{fullDashboardData.metrics.totalTrades}</p>
+                <p className="text-gray-500 text-xs">Total Trades</p>
               </div>
             </div>
           </div>
         </div>
-      ))}
-      
-      <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222] mt-6">
-        <h4 className="text-white font-medium mb-3">Quick Chat</h4>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Say something to the community..."
-            className="flex-1 bg-[#111111] border border-[#222222] rounded-xl px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E]"
-          />
-          <Button className="bg-[#70DB3E] text-black rounded-xl hover:bg-[#5BC236]">
-            <Send className="w-4 h-4" />
-          </Button>
+
+        {/* Tab Navigation */}
+        <div className="flex gap-2 border-b border-[#222222] pb-2">
+          {['forum', 'chatroom'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setCommunityTab(tab)}
+              className={`px-4 py-2 rounded-lg font-medium capitalize transition-all ${
+                communityTab === tab
+                  ? 'bg-[#70DB3E] text-black'
+                  : 'text-gray-400 hover:text-white hover:bg-[#1a1a1a]'
+              }`}
+            >
+              {tab === 'forum' ? 'Forum' : 'Chat Room'}
+            </button>
+          ))}
         </div>
+
+        {communityTab === 'forum' ? (
+          <>
+            {/* Topic Filters */}
+            <div className="flex flex-wrap gap-2">
+              {allTopics.map((topic) => (
+                <button
+                  key={topic}
+                  onClick={() => setSelectedTopic(topic)}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                    selectedTopic === topic
+                      ? 'bg-[#70DB3E] text-black'
+                      : 'bg-[#1a1a1a] text-gray-400 hover:text-white border border-[#222222]'
+                  }`}
+                >
+                  <Hash className="w-3 h-3 inline mr-1" />
+                  {topic}
+                </button>
+              ))}
+            </div>
+
+            {/* Create Post */}
+            <div className="bg-[#1a1a1a] rounded-2xl p-4 border border-[#222222]">
+              <div className="flex items-start gap-3">
+                <img
+                  src={fullDashboardData.user.avatar}
+                  alt="You"
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <div className="flex-1">
+                  <textarea
+                    placeholder="Share your analysis, ask questions, or start a discussion..."
+                    className="w-full bg-[#111111] border border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E] min-h-[80px] resize-none"
+                  />
+                  <div className="flex items-center justify-between mt-3">
+                    <div className="flex items-center gap-2">
+                      <button className="p-2 rounded-lg bg-[#222222] text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10 transition-all">
+                        <Image className="w-5 h-5" />
+                      </button>
+                      <button className="p-2 rounded-lg bg-[#222222] text-gray-400 hover:text-[#70DB3E] hover:bg-[#70DB3E]/10 transition-all">
+                        <Video className="w-5 h-5" />
+                      </button>
+                      <select className="bg-[#222222] text-gray-400 rounded-lg px-3 py-2 text-sm border-none focus:outline-none focus:ring-1 focus:ring-[#70DB3E]">
+                        <option>Select Topic</option>
+                        {fullDashboardData.forumTopics.map((topic) => (
+                          <option key={topic} value={topic}>{topic}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <Button className="bg-[#70DB3E] text-black hover:bg-[#5BC236] font-semibold px-6">
+                      Post
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Forum Posts */}
+            <div className="space-y-4">
+              {filteredPosts.map((post) => (
+                <div
+                  key={post.id}
+                  className={`bg-[#1a1a1a] rounded-2xl p-4 border transition-all duration-300 ${
+                    post.isPinned ? 'border-[#70DB3E]/50' : 'border-[#222222] hover:border-[#70DB3E]/30'
+                  }`}
+                >
+                  {post.isPinned && (
+                    <div className="flex items-center gap-2 text-[#70DB3E] text-xs mb-3">
+                      <Star className="w-3 h-3" /> Pinned Post
+                    </div>
+                  )}
+                  <div className="flex items-start gap-3">
+                    <img
+                      src={post.avatar}
+                      alt={post.author}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <p className="text-white font-medium">{post.author}</p>
+                        {post.topic && (
+                          <span className="px-2 py-0.5 rounded-full bg-[#70DB3E]/20 text-[#70DB3E] text-xs">
+                            {post.topic}
+                          </span>
+                        )}
+                        <span className="text-gray-600 text-xs">{post.time}</span>
+                      </div>
+                      <p className="text-gray-300 mb-3">{post.content}</p>
+                      
+                      {/* Attachment Preview */}
+                      {post.hasAttachment && (
+                        <div className="mb-3 rounded-xl overflow-hidden bg-[#111111] border border-[#222222]">
+                          {post.attachmentType === 'image' && post.attachmentUrl && (
+                            <img src={post.attachmentUrl} alt="Attachment" className="w-full max-h-[200px] object-cover" />
+                          )}
+                          {post.attachmentType === 'video' && (
+                            <div className="flex items-center justify-center py-8 bg-[#111111]">
+                              <div className="flex items-center gap-2 text-gray-400">
+                                <Play className="w-8 h-8 p-2 bg-[#70DB3E]/20 rounded-full text-[#70DB3E]" />
+                                <span>Video Attachment</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-4">
+                        <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
+                          <Heart className="w-4 h-4" /> {post.likes}
+                        </button>
+                        <button className="flex items-center gap-1 text-gray-500 hover:text-[#70DB3E] transition-colors">
+                          <MessageSquare className="w-4 h-4" /> {post.comments}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          /* Chat Room */
+          <div className="bg-[#1a1a1a] rounded-2xl border border-[#222222] overflow-hidden">
+            {/* Chat Header */}
+            <div className="bg-[#111111] px-4 py-3 border-b border-[#222222] flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-[#70DB3E] rounded-full animate-pulse" />
+                <span className="text-white font-medium">Live Chat</span>
+                <span className="text-gray-500 text-sm">• 23 online</span>
+              </div>
+              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                <Settings className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="h-[400px] overflow-y-auto p-4 space-y-4">
+              {fullDashboardData.chatMessages.map((msg) => (
+                <div key={msg.id} className="flex items-start gap-3">
+                  <img src={msg.avatar} alt={msg.author} className="w-8 h-8 rounded-full object-cover" />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-white font-medium text-sm">{msg.author}</span>
+                      <span className="text-gray-600 text-xs">{msg.time}</span>
+                    </div>
+                    <p className="text-gray-300 text-sm mt-1">{msg.message}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-4 border-t border-[#222222]">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  className="flex-1 bg-[#111111] border border-[#222222] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#70DB3E]"
+                />
+                <Button className="bg-[#70DB3E] text-black rounded-xl hover:bg-[#5BC236] px-4">
+                  <Send className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderAffiliateView = () => (
     <div className="space-y-6">
